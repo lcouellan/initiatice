@@ -1,0 +1,31 @@
+initiatice_admin_homepage:
+    path:     /
+    defaults: { _controller: initiaticeAdminBundle:Default:index }
+
+initiatice_admin_article_add:
+    path:     /article/add
+    defaults: { _controller: initiaticeAdminBundle:Article:add }
+
+initiatice_admin_article_edit:
+    path:     /article/edit
+    defaults: { _controller: initiaticeAdminBundle:Article:edit }
+    
+initiatice_admin_article_remove:
+    path:     /article/remove/{id}
+    defaults: { _controller: initiaticeAdminBundle:Article:remove }
+    requirements:
+        id: \d+
+
+initiatice_admin_event_add:
+    path:     /event/add
+    defaults: { _controller: initiaticeAdminBundle:Event:add }
+
+initiatice_admin_event_edit:
+    path:     /event/edit
+    defaults: { _controller: initiaticeAdminBundle:Event:edit }
+
+initiatice_admin_event_remove:
+    path:     /event/remove/{id}
+    defaults: { _controller: initiaticeAdminBundle:Event:remove }
+    requirements:
+        id: \d+
