@@ -2,27 +2,41 @@ initiatice_admin_homepage:
     path:     /
     defaults: { _controller: initiaticeAdminBundle:Default:index }
 
-initiatice_admin_article_add:
-    path:     /article/add
-    defaults: { _controller: initiaticeAdminBundle:Article:add }
 
-initiatice_admin_article_edit:
-    path:     /article/edit
-    defaults: { _controller: initiaticeAdminBundle:Article:edit }
+initiatice_admin_news_index:
+    path:     /news
+    defaults: { _controller: initiaticeAdminBundle:News:index }
+
+initiatice_admin_news_add:
+    path:     /news/add
+    defaults: { _controller: initiaticeAdminBundle:News:add }
+
+initiatice_admin_news_edit:
+    path:     /news/edit/{id}
+    defaults: { _controller: initiaticeAdminBundle:News:edit }
+    requirements:
+            id: \d+
     
-initiatice_admin_article_remove:
-    path:     /article/remove/{id}
-    defaults: { _controller: initiaticeAdminBundle:Article:remove }
+initiatice_admin_news_remove:
+    path:     /news/remove/{id}
+    defaults: { _controller: initiaticeAdminBundle:News:remove }
     requirements:
         id: \d+
+
+
+initiatice_admin_event_index:
+    path:     /event/index
+    defaults: { _controller: initiaticeAdminBundle:Event:index }
 
 initiatice_admin_event_add:
     path:     /event/add
     defaults: { _controller: initiaticeAdminBundle:Event:add }
 
 initiatice_admin_event_edit:
-    path:     /event/edit
+    path:     /event/edit/{id}
     defaults: { _controller: initiaticeAdminBundle:Event:edit }
+    requirements:
+            id: \d+
 
 initiatice_admin_event_remove:
     path:     /event/remove/{id}

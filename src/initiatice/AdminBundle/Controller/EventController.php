@@ -8,8 +8,11 @@ class EventController extends Controller
 {
     public function indexAction()
     {
-        //TODO: List
-        return $this->render('initiaticeAdminBundle:Event:index.html.twig');
+        $repository = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('initiaticeAdminBundle:Event');
+        $events = $repository->findAll();
+        return $this->render('initiaticeAdminBundle:Event:index.html.twig', array('events' => $events));
     }
 
     public function addAction()
@@ -24,7 +27,17 @@ class EventController extends Controller
     
     public function removeAction($id)
     {
-        echo $id;
-        //TODO: Redirect to index
+        $em = $this->getDoctrine()->getManager();
+        // On récupère le repository
+        $repository = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('initiaticeAdminBundle:Event');
+
+        // On récupère l'entité correspondante à l'id $id
+        $event = $repository->find($id);
+        $em->remove($event);
+        $em->flush();
+
+        return $this->redirectToRoute('initiatice_admin_event_index');
     }
 }

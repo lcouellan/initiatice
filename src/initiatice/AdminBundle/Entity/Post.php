@@ -3,10 +3,12 @@
 namespace initiatice\AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\MappedSuperclass;
 
 /**
  * Post
  *
+ * @MappedSuperclass
  * @ORM\Table(name="post")
  * @ORM\Entity(repositoryClass="initiatice\AdminBundle\Repository\PostRepository")
  */

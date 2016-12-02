@@ -1,0 +1,16 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo center">Initiatice Dashboard</a>
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+                <li><a href="{{ path("initiatice_admin_news_index") }}">News</a></li>
+                <li><a href="{{ path("initiatice_admin_event_index") }}">Evènements</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        {% block initiaticeAdmin_body %}{% endblock %}
+    </div>
+{% endblock %}

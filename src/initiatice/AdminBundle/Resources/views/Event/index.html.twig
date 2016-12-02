@@ -1,4 +1,33 @@
-{% extends 'base.html.twig' %}
-{% block body %}
-    List all events
+{% extends "initiaticeAdminBundle::layout.html.twig" %}
+{% block initiaticeAdmin_body %}
+    <table class="striped">
+        <thead>
+        <tr>
+            <th data-field="title">Titre</th>
+            <th data-field="type">Type</th>
+            <th data-field="abstract">Résumé</th>
+            <th data-field="date">Date</th>
+            <th data-field="place">Lieu</th>
+            <th data-field="date_update">Dernière modification</th>
+            <th data-field="actions">Actions</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for item in events %}
+            <tr>
+                <td>{{ item.title|slice(0, 50) }}</td>
+                <td>{{ item.type }}</td>
+                <td>{{ item.abstract|slice(0, 50) }}</td>
+                <td>{{ item.dateStart|date("d/m/Y") }}-{{ item.dateStart|date("d/m/Y") }}</td>
+                <td>{{ item.place }}</td>
+                <td>{{ item.dateUpdate|date("d/m/Y") }}</td>
+                <td>
+                    <a class="waves-effect waves-light btn" href="{{ path('initiatice_admin_event_edit', {'id': item.id}) }}"><i class="material-icons left">mode_edit</i></a>
+                    <a class="waves-effect waves-light btn" href="{{ path('initiatice_admin_event_remove', {'id': item.id}) }}"><i class="material-icons left">delete</i></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
