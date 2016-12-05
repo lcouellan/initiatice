@@ -5,3 +5,4 @@ initiatice_admin:
 initiatice_api:
     resource: "@initiaticeApiBundle/Resources/config/routing.yml"
     prefix:   /
+
