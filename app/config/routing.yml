@@ -5,7 +5,3 @@ initiatice_admin:
 initiatice_api:
     resource: "@initiaticeApiBundle/Resources/config/routing.yml"
     prefix:   /
-
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation
