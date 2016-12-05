@@ -1,4 +1,7 @@
 {% extends "initiaticeAdminBundle::layout.html.twig" %}
 {% block initiaticeAdmin_body %}
-    Add an article
+    <h3>Ajouter une actualité</h3>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
 {% endblock %}

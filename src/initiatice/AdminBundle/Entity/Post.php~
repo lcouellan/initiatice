@@ -9,8 +9,6 @@ use Doctrine\ORM\Mapping\MappedSuperclass;
  * Post
  *
  * @MappedSuperclass
- * @ORM\Table(name="post")
- * @ORM\Entity(repositoryClass="initiatice\AdminBundle\Repository\PostRepository")
  */
 class Post
 {
