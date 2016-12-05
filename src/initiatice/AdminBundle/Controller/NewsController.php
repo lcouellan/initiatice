@@ -5,9 +5,15 @@ namespace initiatice\AdminBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use initiatice\AdminBundle\Entity\News;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 class NewsController extends Controller
 {
@@ -60,6 +66,7 @@ class NewsController extends Controller
 
         // On récupère l'entité correspondante à l'id $id
         $news = $repository->find($id);
+       // $news = new News();
 
         $form = $this->createFormBuilder($news)
             ->add('title', TextType::class, array('label' => 'Titre'))

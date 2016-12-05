@@ -1,0 +1,7 @@
+initiatice_api_news_list:
+    path:     /api/news/list
+    defaults: { _controller: initiaticeApiBundle:News:list }
+
+initiatice_api_event_list:
+    path:     /api/event/list
+    defaults: { _controller: initiaticeApiBundle:Event:list }
