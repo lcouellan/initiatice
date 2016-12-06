@@ -34,12 +34,13 @@ class EventController extends Controller
      * Liste d'evenements
      * @return JsonResponse
      */
-    public function listAction()
+    public function listAction(Request $request)
     {
+        $limit = $request->query->get('limit') == null ? null : $request->query->get('limit');
+
         $events = $this->getDoctrine()
             ->getRepository('initiaticeAdminBundle:Event')
-            ->findAll();
-
+            ->findBy([], null, $limit, null);
         $data = [];
         foreach($events as $event) {
             $data[] = $this->serializer->normalize($event, null);

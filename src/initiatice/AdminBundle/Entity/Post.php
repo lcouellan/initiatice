@@ -63,6 +63,20 @@ class Post
      */
     private $type;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="miniature", type="string", length=255)
+     */
+    private $miniature;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="content_image", type="string", length=255)
+     */
+    private $contentImage;
+
 
     /**
      * Get id
@@ -90,7 +104,7 @@ class Post
 
     /**
      * Get title
-     *
+     *à
      * @return string
      */
     public function getTitle()
@@ -216,5 +230,37 @@ class Post
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMiniature()
+    {
+        return $this->miniature;
+    }
+
+    /**
+     * @param string $miniature
+     */
+    public function setMiniature($miniature)
+    {
+        $this->miniature = $miniature;
+    }
+
+    /**
+     * @return string
+     */
+    public function getContentImage()
+    {
+        return $this->contentImage;
+    }
+
+    /**
+     * @param string $contentImage
+     */
+    public function setContentImage($contentImage)
+    {
+        $this->contentImage = $contentImage;
     }
 }

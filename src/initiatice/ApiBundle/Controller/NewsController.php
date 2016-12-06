@@ -34,12 +34,13 @@ class NewsController extends Controller
      * Liste d'actualités
      * @return JsonResponse
      */
-    public function listAction()
+    public function listAction(Request $request)
     {
+        $limit = $request->query->get('limit') == null ? null : $request->query->get('limit');
+
         $news = $this->getDoctrine()
             ->getRepository('initiaticeAdminBundle:News')
-            ->findAll();
-
+            ->findBy([], null, $limit, null);
         $data = [];
         foreach($news as $new) {
             $data[] = $this->serializer->normalize($new, null);
