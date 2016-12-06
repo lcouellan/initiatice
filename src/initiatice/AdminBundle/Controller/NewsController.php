@@ -34,7 +34,7 @@ class NewsController extends Controller
             ->add('title', TextType::class, array('label' => 'Titre'))
             ->add('type', TextType::class, array('label' => 'Type'))
             ->add('abstract', TextType::class, array('label' => 'Résumé'))
-            ->add('content', TextareaType::class, array('label' => 'Contenu', 'attr' => array('class' => 'tinymce')))
+            ->add('content', TextareaType::class, array('label' => 'Contenu', 'attr' => array('class' => 'wysiwyg')))
             ->add('save', SubmitType::class, array('label' => 'Enregistrer'))
             ->getForm();
 
@@ -72,7 +72,7 @@ class NewsController extends Controller
             ->add('title', TextType::class, array('label' => 'Titre'))
             ->add('type', TextType::class, array('label' => 'Type'))
             ->add('abstract', TextType::class, array('label' => 'Résumé'))
-            ->add('content', TextareaType::class, array('label' => 'Contenu', 'attr' => array('class' => 'tinymce')))
+            ->add('content', TextareaType::class, array('label' => 'Contenu', 'attr' => array('class' => 'wysiwyg')))
             ->add('save', SubmitType::class, array('label' => 'Enregistrer'))
             ->getForm();
 
@@ -95,7 +95,17 @@ class NewsController extends Controller
     
     public function removeAction($id)
     {
-        echo $id;
-        //TODO: Redirect to index
+        $em = $this->getDoctrine()->getManager();
+        // On récupère le repository
+        $repository = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('initiaticeAdminBundle:News');
+
+        // On récupère l'entité correspondante à l'id $id
+        $news = $repository->find($id);
+        $em->remove($news);
+        $em->flush();
+
+        return $this->redirectToRoute('initiatice_admin_news_index');
     }
 }
