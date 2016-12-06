@@ -2,6 +2,20 @@ initiatice_api_news_list:
     path:     /api/news/list
     defaults: { _controller: initiaticeApiBundle:News:list }
 
+initiatice_api_news_show:
+    path:     /api/news/show/{id}
+    defaults: { _controller: initiaticeApiBundle:News:show }
+    requirements:
+            id: \d+
+
+
+
 initiatice_api_event_list:
     path:     /api/event/list
     defaults: { _controller: initiaticeApiBundle:Event:list }
+
+initiatice_api_event_show:
+    path:     /api/event/show/{id}
+    defaults: { _controller: initiaticeApiBundle:Event:show }
+    requirements:
+            id: \d+

@@ -17,6 +17,19 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 class NewsController extends Controller
 {
+    private $serializer;
+    public function __construct() {
+        $encoders = array(new XmlEncoder(), new JsonEncoder());
+        $normalizers = array(new ObjectNormalizer());
+        $this->serializer = new Serializer($normalizers, $encoders);
+    }
+    private function getJsonResponse($data) {
+        $response = new JsonResponse();
+        $response->setData($data);
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+    }
+
     /**
      * Liste d'actualités
      * @return JsonResponse
@@ -27,16 +40,22 @@ class NewsController extends Controller
             ->getRepository('initiaticeAdminBundle:News')
             ->findAll();
 
-        $encoders = array(new XmlEncoder(), new JsonEncoder());
-        $normalizers = array(new ObjectNormalizer());
-        $serializer = new Serializer($normalizers, $encoders);
         $data = [];
         foreach($news as $new) {
-            $data[] = $serializer->normalize($new, null);
+            $data[] = $this->serializer->normalize($new, null);
         }
-        $response = new JsonResponse();
-        $response->setData($data);
-        $response->headers->set('Content-Type', 'application/json');
-        return $response;
+        return $this->getJsonResponse($data);
+    }
+
+    /**
+     * Voir une actualité
+     * @return JsonResponse
+     */
+    public function showAction($id)
+    {
+        $new = $this->getDoctrine()
+            ->getRepository('initiaticeAdminBundle:News')
+            ->find($id);
+        return $this->getJsonResponse($this->serializer->normalize($new, null));
     }
 }
