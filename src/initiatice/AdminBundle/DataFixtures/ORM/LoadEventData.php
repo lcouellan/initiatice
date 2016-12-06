@@ -18,7 +18,8 @@ class LoadUserData implements FixtureInterface
         $e1->setDateEnd(new \DateTime('2015-10-04'));
         $e1->setDateAdd(new \DateTime());
         $e1->setDateUpdate(new \DateTime());
-
+        $e1->setMiniature("http://cemu.unicaen.fr/servlet/com.univ.collaboratif.utils.LectureFichiergw?ID_FICHIER=1339426835181&ID_FICHE=42926");
+        $e1->setContentImage("http://cemu.unicaen.fr/servlet/com.univ.collaboratif.utils.LectureFichiergw?ID_FICHIER=1339426835480&ID_FICHE=43024");
         $manager->persist($e1);
 
         $e2 = new Event();
@@ -39,8 +40,10 @@ http://www.canal-u.tv/producteurs/centre_d_enseignement_multimedia_universitaire
         $e2->setDateEnd(new \DateTime('2016-03-30'));
         $e2->setDateAdd(new \DateTime());
         $e2->setDateUpdate(new \DateTime());
-
+        $e2->setMiniature("http://cemu.unicaen.fr/servlet/com.univ.collaboratif.utils.LectureFichiergw?ID_FICHIER=1339426833966&ID_FICHE=42926");
+        $e2->setContentImage("http://cemu.unicaen.fr/servlet/com.univ.collaboratif.utils.LectureFichiergw?ID_FICHIER=1339426835468&ID_FICHE=44151");
         $manager->persist($e2);
+
 
         $manager->flush();
     }
