@@ -17,26 +17,45 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 class EventController extends Controller
 {
+    private $serializer;
+    public function __construct() {
+        $encoders = array(new XmlEncoder(), new JsonEncoder());
+        $normalizers = array(new ObjectNormalizer());
+        $this->serializer = new Serializer($normalizers, $encoders);
+    }
+    private function getJsonResponse($data) {
+        $response = new JsonResponse();
+        $response->setData($data);
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+    }
+
     /**
      * Liste d'evenements
      * @return JsonResponse
      */
     public function listAction()
     {
-        $news = $this->getDoctrine()
+        $events = $this->getDoctrine()
             ->getRepository('initiaticeAdminBundle:Event')
             ->findAll();
 
-        $encoders = array(new XmlEncoder(), new JsonEncoder());
-        $normalizers = array(new ObjectNormalizer());
-        $serializer = new Serializer($normalizers, $encoders);
         $data = [];
-        foreach($news as $new) {
-            $data[] = $serializer->normalize($new, null);
+        foreach($events as $event) {
+            $data[] = $this->serializer->normalize($event, null);
         }
-        $response = new JsonResponse();
-        $response->setData($data);
-        $response->headers->set('Content-Type', 'application/json');
-        return $response;
+        return $this->getJsonResponse($data);
+    }
+
+    /**
+     * Voir un evenement
+     * @return JsonResponse
+     */
+    public function showAction($id)
+    {
+        $event = $this->getDoctrine()
+            ->getRepository('initiaticeAdminBundle:Event')
+            ->find($id);
+        return $this->getJsonResponse($this->serializer->normalize($event, null));
     }
 }
