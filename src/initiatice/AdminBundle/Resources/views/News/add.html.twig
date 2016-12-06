@@ -5,3 +5,7 @@
     {{ form_widget(form) }}
     {{ form_end(form) }}
 {% endblock %}
+{% block javascripts %}
+{{ parent() }}  
+<script> CKEDITOR.replace('form_content');</script>
+{% endblock %}
