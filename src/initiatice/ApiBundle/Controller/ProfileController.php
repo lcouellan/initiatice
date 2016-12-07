@@ -3,7 +3,7 @@
 namespace initiatice\ApiBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use initiatice\ApiBundle\Entity\News;
+use initiatice\ApiBundle\Entity\Profile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -15,7 +15,7 @@ use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
-class NewsController extends Controller
+class ProfileController extends Controller
 {
     private $serializer;
     public function __construct() {
@@ -31,34 +31,32 @@ class NewsController extends Controller
     }
 
     /**
-     * Liste d'actualités
+     * Liste de profils
      * @return JsonResponse
      */
     public function listAction(Request $request)
     {
         $limit = $request->query->get('limit') == null ? null : $request->query->get('limit');
-        $findBy = [];
-        if($request->query->get('profile') != null) $findBy['profile'] = $request->query->get('profile');
 
-        $news = $this->getDoctrine()
-            ->getRepository('initiaticeAdminBundle:News')
-            ->findBy($findBy, null, $limit, null);
+        $profiles = $this->getDoctrine()
+            ->getRepository('initiaticeAdminBundle:Profile')
+            ->findBy([], null, $limit, null);
         $data = [];
-        foreach($news as $new) {
-            $data[] = $this->serializer->normalize($new, null);
+        foreach($profiles as $profile) {
+            $data[] = $this->serializer->normalize($profile, null);
         }
         return $this->getJsonResponse($data);
     }
 
     /**
-     * Voir une actualité
+     * Voir un profil
      * @return JsonResponse
      */
     public function showAction($id)
     {
-        $new = $this->getDoctrine()
-            ->getRepository('initiaticeAdminBundle:News')
+        $profile = $this->getDoctrine()
+            ->getRepository('initiaticeAdminBundle:Profile')
             ->find($id);
-        return $this->getJsonResponse($this->serializer->normalize($new, null));
+        return $this->getJsonResponse($this->serializer->normalize($profile, null));
     }
 }

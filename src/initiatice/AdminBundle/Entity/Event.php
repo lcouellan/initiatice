@@ -20,6 +20,13 @@ class Event extends Post
     private $place;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="external_link", type="string", length=255)
+     */
+    private $externalLink;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="date_start", type="datetime")
@@ -103,5 +110,21 @@ class Event extends Post
     public function getDateEnd()
     {
         return $this->dateEnd;
+    }
+
+    /**
+     * @return string
+     */
+    public function getExternalLink()
+    {
+        return $this->externalLink;
+    }
+
+    /**
+     * @param string $externalLink
+     */
+    public function setExternalLink($externalLink)
+    {
+        $this->externalLink = $externalLink;
     }
 }

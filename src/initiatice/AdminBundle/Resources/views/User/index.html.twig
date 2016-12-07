@@ -1,0 +1,29 @@
+{% extends "initiaticeAdminBundle::layout.html.twig" %}
+{% block initiaticeAdmin_body %}
+<a class="waves-effect waves-light btn" href="{{ path('fos_user_registration_register') }}">Ajouter</a>
+    <table class="striped">
+        <thead>
+        <tr>
+            <th data-field="email">Email</th>
+            <th data-field="username">Prénom</th>
+            <th data-field="enabled">Actif</th>
+            <th data-field="actions">Actions</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.email }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.enabled }}</td>
+                <td>
+                    <a class="waves-effect waves-light btn" href="{{ path('initiatice_admin_user_remove', {'id': user.id}) }}">
+                        <i class="material-icons left">delete</i>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

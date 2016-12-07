@@ -37,10 +37,12 @@ class EventController extends Controller
     public function listAction(Request $request)
     {
         $limit = $request->query->get('limit') == null ? null : $request->query->get('limit');
+        $findBy = [];
+        if($request->query->get('profile') != null) $findBy['profile'] = $request->query->get('profile');
 
         $events = $this->getDoctrine()
             ->getRepository('initiaticeAdminBundle:Event')
-            ->findBy([], null, $limit, null);
+            ->findBy($findBy, null, $limit, null);
         $data = [];
         foreach($events as $event) {
             $data[] = $this->serializer->normalize($event, null);

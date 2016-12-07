@@ -64,6 +64,13 @@ class Post
     private $type;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="profile", type="integer")
+     */
+    private $profile;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="miniature", type="string", length=255)
@@ -262,5 +269,21 @@ class Post
     public function setContentImage($contentImage)
     {
         $this->contentImage = $contentImage;
+    }
+
+    /**
+     * @return int
+     */
+    public function getProfile()
+    {
+        return $this->profile;
+    }
+
+    /**
+     * @param int $profile
+     */
+    public function setProfile($profile)
+    {
+        $this->profile = $profile;
     }
 }

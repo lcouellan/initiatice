@@ -12,7 +12,25 @@ class UserController extends Controller
 {
     public function indexAction()
     {
-        return $this->redirect($this->generateUrl('fos_user_security_login'));
+        $repository = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('initiaticeAdminBundle:User');
+        $users = $repository->findAll();
+        return $this->render('initiaticeAdminBundle:User:index.html.twig', array('users' => $users));
+    }
+
+    public function removeAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('initiaticeAdminBundle:User');
+
+        $user = $repository->find($id);
+        $em->remove($user);
+        $em->flush();
+
+        return $this->redirectToRoute('initiatichomepageer_index');
     }
 
     // Créer un compte, non utilisé

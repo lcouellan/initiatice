@@ -1,6 +1,16 @@
 initiatice_admin_homepage:
     path:     /
+    defaults: { _controller: initiaticeAdminBundle:Default:index }
+
+initiatice_admin_user_index:
+    path:     /user
     defaults: { _controller: initiaticeAdminBundle:User:index }
+
+initiatice_admin_user_remove:
+    path:     /user/remove/{id}
+    defaults: { _controller: initiaticeAdminBundle:User:remove }
+    requirements:
+        id: \d+
 
 initiatice_admin_news_index:
     path:     /news

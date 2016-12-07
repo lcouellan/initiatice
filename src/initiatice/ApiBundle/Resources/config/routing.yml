@@ -1,3 +1,15 @@
+initiatice_api_profile_list:
+    path:     /api/profile/list
+    defaults: { _controller: initiaticeApiBundle:Profile:list }
+
+initiatice_api_profile_show:
+    path:     /api/profile/show/{id}
+    defaults: { _controller: initiaticeApiBundle:Profile:show }
+    requirements:
+            id: \d+
+
+
+
 initiatice_api_news_list:
     path:     /api/news/list
     defaults: { _controller: initiaticeApiBundle:News:list }
@@ -17,5 +29,29 @@ initiatice_api_event_list:
 initiatice_api_event_show:
     path:     /api/event/show/{id}
     defaults: { _controller: initiaticeApiBundle:Event:show }
+    requirements:
+            id: \d+
+
+
+
+initiatice_api_forum_comment_list:
+    path:     /api/forum/comment/list
+    defaults: { _controller: initiaticeApiBundle:ForumComment:list }
+
+initiatice_api_forum_comment_show:
+    path:     /api/forum/comment/show/{id}
+    defaults: { _controller: initiaticeApiBundle:ForumComment:show }
+    requirements:
+            id: \d+
+
+
+
+initiatice_api_forum_question_list:
+    path:     /api/forum/question/list
+    defaults: { _controller: initiaticeApiBundle:ForumQuestion:list }
+
+initiatice_api_forum_question_show:
+    path:     /api/forum/question/show/{id}
+    defaults: { _controller: initiaticeApiBundle:ForumQuestion:show }
     requirements:
             id: \d+

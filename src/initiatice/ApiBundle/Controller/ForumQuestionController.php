@@ -3,7 +3,7 @@
 namespace initiatice\ApiBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use initiatice\ApiBundle\Entity\News;
+use initiatice\ApiBundle\Entity\ForumQuestion;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -15,7 +15,7 @@ use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
-class NewsController extends Controller
+class ForumQuestionController extends Controller
 {
     private $serializer;
     public function __construct() {
@@ -31,34 +31,32 @@ class NewsController extends Controller
     }
 
     /**
-     * Liste d'actualités
+     * Liste de questions
      * @return JsonResponse
      */
     public function listAction(Request $request)
     {
         $limit = $request->query->get('limit') == null ? null : $request->query->get('limit');
-        $findBy = [];
-        if($request->query->get('profile') != null) $findBy['profile'] = $request->query->get('profile');
 
-        $news = $this->getDoctrine()
-            ->getRepository('initiaticeAdminBundle:News')
-            ->findBy($findBy, null, $limit, null);
+        $questions = $this->getDoctrine()
+            ->getRepository('initiaticeAdminBundle:ForumQuestion')
+            ->findBy([], null, $limit, null);
         $data = [];
-        foreach($news as $new) {
-            $data[] = $this->serializer->normalize($new, null);
+        foreach($questions as $question) {
+            $data[] = $this->serializer->normalize($question, null);
         }
         return $this->getJsonResponse($data);
     }
 
     /**
-     * Voir une actualité
+     * Voir une question
      * @return JsonResponse
      */
     public function showAction($id)
     {
-        $new = $this->getDoctrine()
-            ->getRepository('initiaticeAdminBundle:News')
+        $question = $this->getDoctrine()
+            ->getRepository('initiaticeAdminBundle:ForumQuestion')
             ->find($id);
-        return $this->getJsonResponse($this->serializer->normalize($new, null));
+        return $this->getJsonResponse($this->serializer->normalize($question, null));
     }
 }

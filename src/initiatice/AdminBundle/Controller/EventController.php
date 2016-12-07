@@ -31,6 +31,7 @@ class EventController extends Controller
             ->add('type', TextType::class, array('label' => 'Type'))
             ->add('abstract', TextType::class, array('label' => 'Résumé'))
             ->add('place', TextType::class, array('label' => 'Lieu de l\'événement'))
+            ->add('externalLink', TextType::class, array('label' => 'Lien externe'))
             ->add('dateStart', TimeType::class, array(
 				'input'  => 'timestamp',
 				'widget' => 'choice',
@@ -77,6 +78,7 @@ class EventController extends Controller
             ->add('type', TextType::class, array('label' => 'Type'))
             ->add('abstract', TextType::class, array('label' => 'Résumé'))
             ->add('place', TextType::class, array('label' => 'Lieu de l\'événement'))
+            ->add('externalLink', TextType::class, array('label' => 'Lien externe'))
             ->add('dateStart', TimeType::class, array(
 				'input'  => 'timestamp',
 				'widget' => 'choice',
