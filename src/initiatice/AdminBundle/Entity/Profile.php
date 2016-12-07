@@ -43,4 +43,12 @@ class Profile
     {
         $this->name = $name;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 }
