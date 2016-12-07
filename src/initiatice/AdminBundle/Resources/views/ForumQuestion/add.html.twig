@@ -1,0 +1,10 @@
+{% extends "initiaticeAdminBundle::layout.html.twig" %}
+{% block initiaticeAdmin_body %}
+    <h3>Ajouter une question</h3>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+{% endblock %}
