@@ -5,6 +5,8 @@
     {{ form_widget(form) }}
     {{ form_end(form) }}
 {% endblock %}
+{% block initiaticeAdmin_footer %}
+{% endblock %}
 {% block javascripts %}
 {{ parent() }}  
 <script> CKEDITOR.replace('form_content');</script>
