@@ -43,6 +43,9 @@ initiatice_api_forum_comment_show:
     defaults: { _controller: initiaticeApiBundle:ForumComment:show }
     requirements:
             id: \d+
+initiatice_api_forum_comment_add:
+    path:     /api/forum/comment/add
+    defaults: { _controller: initiaticeApiBundle:ForumComment:add }
 
 
 
@@ -55,3 +58,6 @@ initiatice_api_forum_question_show:
     defaults: { _controller: initiaticeApiBundle:ForumQuestion:show }
     requirements:
             id: \d+
+initiatice_api_forum_question_add:
+    path:     /api/forum/question/add
+    defaults: { _controller: initiaticeApiBundle:ForumQuestion:add }
