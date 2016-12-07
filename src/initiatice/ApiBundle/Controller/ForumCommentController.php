@@ -3,8 +3,9 @@
 namespace initiatice\ApiBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use initiatice\ApiBundle\Entity\ForumComment;
+use initiatice\AdminBundle\Entity\ForumComment;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -28,6 +29,40 @@ class ForumCommentController extends Controller
         $response->setData($data);
         $response->headers->set('Content-Type', 'application/json');
         return $response;
+    }
+
+    /*
+     * Ajouter un commentaire
+     */
+    public function addAction(Request $request)
+    {
+        /*
+         * Validation
+         */
+        $isNotNull = $request->request->get('pseudo')
+            && $request->request->get('content')
+            && $request->request->get('question');
+
+        $isNotEmpty = sizeof($request->request->get('pseudo')) > 0
+            && sizeof($request->request->get('content')) > 0
+            && sizeof($request->request->get('question')) > 0;
+
+        /*
+         * Ajout
+         */
+        if($isNotNull && $isNotEmpty) {
+            $comment = new ForumComment();
+            $comment->setPseudo( substr($request->request->get('pseudo'), 0, 255) );
+            $comment->setContent( substr($request->request->get('content'), 0, 999999) );
+            $comment->setQuestionId( substr($request->request->get('question'), 0, 15) );
+            $comment->setDateAdd(new \DateTime());
+            $comment->setDateUpdate(new \DateTime());
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($comment);
+            $em->flush();
+            return new Response('OK: COMMENT ADDED', 201);
+        }
+        return new Response('ERROR: COMMENT NOT ADDED', 400);
     }
 
     /**

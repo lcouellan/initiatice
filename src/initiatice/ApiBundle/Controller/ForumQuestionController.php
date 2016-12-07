@@ -3,8 +3,9 @@
 namespace initiatice\ApiBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use initiatice\ApiBundle\Entity\ForumQuestion;
+use initiatice\AdminBundle\Entity\ForumQuestion;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -28,6 +29,40 @@ class ForumQuestionController extends Controller
         $response->setData($data);
         $response->headers->set('Content-Type', 'application/json');
         return $response;
+    }
+
+    /*
+     * Ajouter une question
+     */
+    public function addAction(Request $request)
+    {
+        /*
+         * Validation
+         */
+        $isNotNull = $request->request->get('pseudo')
+            && $request->request->get('content')
+            && $request->request->get('title');
+
+        $isNotEmpty = sizeof($request->request->get('pseudo')) > 0
+            && sizeof($request->request->get('content')) > 0
+            && sizeof($request->request->get('title')) > 0;
+
+        /*
+         * Ajout
+         */
+        if($isNotNull && $isNotEmpty) {
+            $question = new ForumQuestion();
+            $question->setPseudo( substr($request->request->get('pseudo'), 0, 255) );
+            $question->setContent( substr($request->request->get('content'), 0, 999999) );
+            $question->setTitle( substr($request->request->get('title'), 0, 255) );
+            $question->setDateAdd(new \DateTime());
+            $question->setDateUpdate(new \DateTime());
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($question);
+            $em->flush();
+            return new Response('OK: QUESTION ADDED', 201);
+        }
+        return new Response('ERROR: QUESTION NOT ADDED', 400);
     }
 
     /**
