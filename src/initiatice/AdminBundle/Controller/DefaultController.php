@@ -15,11 +15,6 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        $securityContext = $this->container->get('security.authorization_checker');
-        var_dump($securityContext->isGranted('IS_AUTHENTIFICATED_FULLY'));
-        if ( $this->get('security.token_storage')->getToken()->getUser() ) {
-            return $this->render('initiaticeAdminBundle:Default:index.html.twig');
-        }
-        return $this->redirect($this->generateUrl('fos_user_security_login'));
+        return $this->render('initiaticeAdminBundle:Default:index.html.twig');
     }
 }

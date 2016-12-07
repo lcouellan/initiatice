@@ -1,0 +1,31 @@
+{% extends "initiaticeAdminBundle::layout.html.twig" %}
+{% block initiaticeAdmin_body %}
+    <a class="waves-effect waves-light btn" href="{{ path('initiatice_admin_forum_question_add') }}">Ajouter</a>
+
+    <table class="striped">
+        <thead>
+        <tr>
+            <th data-field="pseudo">Pseudo</th>
+            <th data-field="title">Titre</th>
+            <th data-field="content">Contenu</th>
+            <th data-field="date_update">Dernière modification</th>
+            <th data-field="actions">Actions</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for c in questions %}
+        <tr>
+            <td>{{ c.pseudo|slice(0, 50) }}</td>
+            <td>{{ c.title }}</td>
+            <td>{{ c.content|slice(0, 50) }}</td>
+            <td>{{ c.dateUpdate|date("d/m/Y") }}</td>
+            <td>
+                <a class="waves-effect waves-light btn" href="{{ path('initiatice_admin_forum_question_edit', {'id': c.id}) }}"><i class="material-icons left">mode_edit</i></a>
+                <a class="waves-effect waves-light btn" href="{{ path('initiatice_admin_forum_question_remove', {'id': c.id}) }}"><i class="material-icons left">delete</i></a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

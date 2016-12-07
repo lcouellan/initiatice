@@ -1,0 +1,11 @@
+{% extends "initiaticeAdminBundle::layout.html.twig" %}
+{% block initiaticeAdmin_body %}
+    <h3>Editer le commentaire</h3>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+{% endblock %}
+{% block javascripts %}
+{{ parent() }}  
+<script> CKEDITOR.replace('form_content');</script>
+{% endblock %}
