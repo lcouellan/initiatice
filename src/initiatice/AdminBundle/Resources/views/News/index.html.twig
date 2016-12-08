@@ -12,7 +12,7 @@
             <th data-field="title">Titre</th>
             <th data-field="type">Type</th>
             <th data-field="abstract">Résumé</th>
-            <th data-field="date_update">Dernière modification</th>
+            <th data-field="date_add">Date d'ajout</th>
             <th data-field="actions" class="table-actions-2">Actions</th>
         </tr>
         </thead>
@@ -23,7 +23,7 @@
             <td>{{ item.title|slice(0, 50) }}</td>
             <td>{{ item.type }}</td>
             <td>{{ item.abstract|slice(0, 50) }}</td>
-            <td>{{ item.dateUpdate|date("d/m/Y") }}</td>
+            <td>{{ item.dateAdd|date("d/m/Y") }}</td>
             <td>
                 <a class="btn-floating waves-effect waves-light z-depth-2 blue darken-1" href="{{ path('initiatice_admin_news_edit', {'id': item.id}) }}"><i class="material-icons left">mode_edit</i></a>
                 <a class="btn-floating waves-effect waves-light z-depth-2 blue darken-1" href="{{ path('initiatice_admin_news_remove', {'id': item.id}) }}"><i class="material-icons left">delete</i></a>
