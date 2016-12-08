@@ -12,11 +12,16 @@
     </head>
     <body>
         {% block body %}{% endblock %}
-        {% block fos_user_content %}{% endblock fos_user_content %}
         {% block javascripts %}
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
             <script src="//cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
+            <script>
+                $(document).ready(function() {
+                    $('select').material_select();
+                    Materialize.updateTextFields();
+                });
+            </script>
         {% endblock %}
     </body>
 </html>

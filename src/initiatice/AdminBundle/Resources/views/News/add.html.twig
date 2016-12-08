@@ -2,7 +2,14 @@
 {% block initiaticeAdmin_body %}
     <h3>Ajouter une actualité</h3>
     {{ form_start(form) }}
-    {{ form_widget(form) }}
+
+    <div class="input-field">{{ form_row(form.title) }}</div>
+    <div class="input-field">{{ form_row(form.type) }}</div>
+    <div class="input-field">{{ form_row(form.profile) }}</div>
+    <div class="input-field">{{ form_row(form.abstract) }}</div>
+    <div>{{ form_row(form.content) }}</div>
+    {{ form_row(form.save) }}
+
     {{ form_end(form) }}
 {% endblock %}
 {% block initiaticeAdmin_footer %}

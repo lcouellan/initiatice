@@ -3,49 +3,45 @@
 {% if error %}
     <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 {% endif %}
-    
-    <div class="container" style="width:75%;">
-     <div class="row">
-         <div class="col l4 offset-l4 z-depth-4 card-panel grey lighten-5 ">
-         <form class="login-form" action="{{ path("fos_user_security_check") }}" method="post">
-           {% if csrf_token %}
+<div class="row">
+    <div class="col s4 offset-s4 card-panel grey lighten-5 ">
+        <form class="login-form" action="{{ path("fos_user_security_check") }}" method="post">
+            {% if csrf_token %}
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
             {% endif %}
-             <div class="row">
-                 <div class="input-field col s12 center">
-                 <img src="https://www.shareicon.net/data/128x128/2016/09/16/829837_people_512x512.png" alt="" class="circle responsive-img valign profile-image-login">
-                 <p class="center login-form-text">Connexion</p>
-                 </div>
-             </div>
-             <div class="row">
-                 <div class="input-field col s8 offset-l2">
-                   <i class="material-icons prefix">account_circle</i>
-                   <input type="text" class="validate" id="username" name="_username" value="{{ last_username }}" required="required">
-                   <label for="username">{{ 'security.login.username'|trans }}</label>
-                 </div>
+            <div class="row">
+                <div class="input-field col s12 center">
+                    <img src="https://www.shareicon.net/data/128x128/2016/09/16/829837_people_512x512.png" alt="" class="circle responsive-img valign profile-image-login">
+                    <p class="center login-form-text">Connexion au dashboard Initiatice</p>
+                </div>
             </div>
             <div class="row">
-                <div class="input-field col s8 offset-l2">
-                  <i class="material-icons prefix">lock</i>
-                  <input type="password" class="validate" id="password" name="_password" required="required">
-                  <label for="password">{{ 'security.login.password'|trans }}</label>
+                <div class="input-field col s8 offset-s2">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input type="text" class="validate" id="username" name="_username" value="{{ last_username }}" required="required">
+                    <label for="username">{{ 'security.login.username'|trans }}</label>
                 </div>
-           </div>
-           <div class="row">
-               <div class="input-field col s8 offset-l2 login-text">
-               <input id="remember_me" type="checkbox" name="_remember_me" value="on">
-               <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
-               </div>
-           </div>
-           <div class="row">
-               <div class="input-field col s12 ">
-               <button class="btn waves-effect waves-light col s12 blue darken-3" id="_submit" name="_submit" type="submit" value="{{ 'security.login.submit'|trans }}">Connexion
-               <i class="material-icons right">send</i>
-               </button>
-               </div>
-           </div>
-         </form>
-         </div>
-     </div>
-  </div>
-</form>
+            </div>
+            <div class="row">
+                <div class="input-field col s8 offset-s2">
+                    <i class="material-icons prefix">lock</i>
+                    <input type="password" class="validate" id="password" name="_password" required="required">
+                    <label for="password">{{ 'security.login.password'|trans }}</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s8 offset-s2 login-text">
+                    <input id="remember_me" type="checkbox" name="_remember_me" value="on">
+                    <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 ">
+                    <button class="btn waves-effect waves-light col s12 blue darken-3" id="_submit" name="_submit" type="submit" value="{{ 'security.login.submit'|trans }}">Connexion
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
