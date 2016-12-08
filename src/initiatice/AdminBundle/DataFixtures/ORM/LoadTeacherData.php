@@ -31,6 +31,7 @@ class LoadTeacherData implements FixtureInterface, ContainerAwareInterface
         $t->setPlainPassword('Laurence');
         $t->setPassword($e->encodePassword($t->getPlainPassword(), $t->getSalt()));
         $t->setEmail("laurence@mail.com");
+        $t->setProfile(1);
         $t->setEnabled(true);
         $t->setDateAdd(new \DateTime());
         $t->setDateUpdate(new \DateTime());
@@ -43,6 +44,7 @@ class LoadTeacherData implements FixtureInterface, ContainerAwareInterface
         $t->setPlainPassword('Gwendoline');
         $t->setPassword($e->encodePassword($t->getPlainPassword(), $t->getSalt()));
         $t->setEmail("gwendoline@mail.com");
+        $t->setProfile(1);
         $t->setEnabled(true);
         $t->setDateAdd(new \DateTime());
         $t->setDateUpdate(new \DateTime());

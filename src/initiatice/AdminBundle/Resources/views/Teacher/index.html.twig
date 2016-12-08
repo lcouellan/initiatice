@@ -25,8 +25,8 @@
             <td>{{ t.email|slice(0, 50) }}</td>
             <td>{{ t.enabled }}</td>
             <td>
-                <a class="btn-floating waves-effect waves-light z-depth-2 blue darken-1" href="{{ path('initiatice_admin_teacher_edit', {'id': item.id}) }}"><i class="material-icons left">mode_edit</i></a>
-                <a class="btn-floating waves-effect waves-light z-depth-2 blue darken-1" href="{{ path('initiatice_admin_teacher_remove', {'id': item.id}) }}"><i class="material-icons left">delete</i></a>
+                <a class="btn-floating waves-effect waves-light z-depth-2 blue darken-1" href="{{ path('initiatice_admin_teacher_edit', {'id': t.id}) }}"><i class="material-icons left">mode_edit</i></a>
+                <a class="btn-floating waves-effect waves-light z-depth-2 blue darken-1" href="{{ path('initiatice_admin_teacher_remove', {'id': t.id}) }}"><i class="material-icons left">delete</i></a>
             </td>
         </tr>
         {% endfor %}

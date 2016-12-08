@@ -49,6 +49,14 @@ class Teacher
     private $email;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="profile", type="integer")
+     * @Assert\NotBlank()
+     */
+    private $profile;
+
+    /**
      * @var boolean
      *
      * @ORM\Column(name="enabled", type="boolean")
@@ -224,5 +232,21 @@ class Teacher
     public function setDateUpdate($dateUpdate)
     {
         $this->dateUpdate = $dateUpdate;
+    }
+
+    /**
+     * @return int
+     */
+    public function getProfile()
+    {
+        return $this->profile;
+    }
+
+    /**
+     * @param int $profile
+     */
+    public function setProfile($profile)
+    {
+        $this->profile = $profile;
     }
 }

@@ -3,7 +3,7 @@
 namespace initiatice\ApiBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use initiatice\ApiBundle\Entity\News;
+use initiatice\ApiBundle\Entity\Teacher;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -12,7 +12,7 @@ use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
-class NewsController extends Controller
+class TeacherController extends Controller
 {
     private $serializer;
     public function __construct() {
@@ -28,7 +28,7 @@ class NewsController extends Controller
     }
 
     /**
-     * Liste d'actualités
+     * Liste d'evenements
      * @return JsonResponse
      */
     public function listAction(Request $request)
@@ -37,25 +37,25 @@ class NewsController extends Controller
         $findBy = [];
         if($request->query->get('profile') != null) $findBy['profile'] = $request->query->get('profile');
 
-        $news = $this->getDoctrine()
-            ->getRepository('initiaticeAdminBundle:News')
+        $teachers = $this->getDoctrine()
+            ->getRepository('initiaticeAdminBundle:Teacher')
             ->findBy($findBy, null, $limit, null);
         $data = [];
-        foreach($news as $new) {
-            $data[] = $this->serializer->normalize($new, null);
+        foreach($teachers as $teacher) {
+            $data[] = $this->serializer->normalize($teacher, null);
         }
         return $this->getJsonResponse($data);
     }
 
     /**
-     * Voir une actualité
+     * Voir un evenement
      * @return JsonResponse
      */
     public function showAction($id)
     {
-        $new = $this->getDoctrine()
-            ->getRepository('initiaticeAdminBundle:News')
+        $teacher = $this->getDoctrine()
+            ->getRepository('initiaticeAdminBundle:Teacher')
             ->find($id);
-        return $this->getJsonResponse($this->serializer->normalize($new, null));
+        return $this->getJsonResponse($this->serializer->normalize($teacher, null));
     }
 }
