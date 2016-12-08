@@ -63,9 +63,11 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(name="miniature", type="string", length=255)
+     * @ORM\Column(name="external_link", type="string", length=255)
+     * @Assert\NotBlank()
      */
-    private $miniature;
+    private $externalLink;
+
 
     /**
      * @var string
@@ -77,16 +79,11 @@ class Post
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_add", type="datetime")
+     * @ORM\Column(name="date_add", type="datetime", nullable=true)
      */
     private $dateAdd;
+    
 
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="date_update", type="datetime")
-     */
-    private $dateUpdate;
 
 
     /**
@@ -195,20 +192,21 @@ class Post
         return $this->type;
     }
 
+
     /**
      * @return string
      */
-    public function getMiniature()
+    public function getExternalLink()
     {
-        return $this->miniature;
+        return $this->externalLink;
     }
 
     /**
-     * @param string $miniature
+     * @param string $externalLink
      */
-    public function setMiniature($miniature)
+    public function setExternalLink($externalLink)
     {
-        $this->miniature = $miniature;
+        $this->externalLink = $externalLink;
     }
 
     /**
@@ -259,19 +257,4 @@ class Post
         $this->dateAdd = $dateAdd;
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getDateUpdate()
-    {
-        return $this->dateUpdate;
-    }
-
-    /**
-     * @param \DateTime $dateUpdate
-     */
-    public function setDateUpdate($dateUpdate)
-    {
-        $this->dateUpdate = $dateUpdate;
-    }
 }

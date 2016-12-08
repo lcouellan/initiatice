@@ -45,6 +45,7 @@ class NewsController extends Controller
             ->add('profile', ChoiceType::class, [
                 'choices' => $choices, 'label' => 'Profile'
             ])
+			->add('externalLink', TextType::class, ['label' => 'Lien externe'])
             ->add('abstract', TextType::class, ['label' => 'Résumé', 'attr' => ['class' => 'input-field']])
             ->add('content', TextareaType::class, ['label' => 'Contenu', 'attr' => ['class' => 'wysiwyg']])
             ->add('save', SubmitType::class, ['label' => 'Enregistrer'])

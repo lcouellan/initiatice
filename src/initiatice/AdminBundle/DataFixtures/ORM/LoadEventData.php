@@ -15,13 +15,12 @@ class LoadUserData implements FixtureInterface
         $e->setType("Café'TICE");
         $e->setProfile(1);
         $e->setPlace('Belvedère, bâtiment D · campus 1');
+        $e->setLatitude(49.181318);
+        $e->setLongitude(-0.373289);
         $e->setDateStart(new \DateTime('2015-10-04'));
-        $e->setDateEnd(new \DateTime('2015-10-04'));
-        $e->setMiniature("http://cemu.unicaen.fr/servlet/com.univ.collaboratif.utils.LectureFichiergw?ID_FICHIER=1339426835181&ID_FICHE=42926");
         $e->setContentImage("http://cemu.unicaen.fr/servlet/com.univ.collaboratif.utils.LectureFichiergw?ID_FICHIER=1339426835480&ID_FICHE=43024");
         $e->setExternalLink("https://www.canal-u.tv/video/centre_d_enseignement_multimedia_universitaire_c_e_m_u/08_learning_pitch_pitchez_votre_outil_pedagogique_en_5_min_jipn_2016.21253");
         $e->setDateAdd(new \DateTime());
-        $e->setDateUpdate(new \DateTime());
         $manager->persist($e);
 
         $e = new Event();
@@ -38,14 +37,13 @@ La seconde journée était dédiée aux ateliers.
 
 Toutes les conférences ont été captées, vous pouvez les revoir sur Canal-U :
 http://www.canal-u.tv/producteurs/centre_d_enseignement_multimedia_universitaire_c_e_m_u/cemu/jipn2016");
-        $e->setPlace('Amphi Pierre Daure - Campus 1');
+        $e->setPlace('Amphi Pierre Daure - Campus 1'); 
+        $e->setLatitude(49.176318);
+        $e->setLongitude(-0.376289);
         $e->setDateStart(new \DateTime('2016-03-29'));
-        $e->setDateEnd(new \DateTime('2016-03-30'));
-        $e->setMiniature("http://cemu.unicaen.fr/servlet/com.univ.collaboratif.utils.LectureFichiergw?ID_FICHIER=1339426833966&ID_FICHE=42926");
         $e->setContentImage("http://cemu.unicaen.fr/servlet/com.univ.collaboratif.utils.LectureFichiergw?ID_FICHIER=1339426835468&ID_FICHE=44151");
         $e->setExternalLink('https://www.canal-u.tv/video/centre_d_enseignement_multimedia_universitaire_c_e_m_u/08_learning_pitch_pitchez_votre_outil_pedagogique_en_5_min_jipn_2016.21253');
         $e->setDateAdd(new \DateTime());
-        $e->setDateUpdate(new \DateTime());
         $manager->persist($e);
 
         $manager->flush();

@@ -21,13 +21,6 @@ class Event extends Post
      */
     private $place;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="external_link", type="string", length=255)
-     * @Assert\NotBlank()
-     */
-    private $externalLink;
 
     /**
      * @var \DateTime
@@ -36,14 +29,18 @@ class Event extends Post
      * @Assert\NotBlank()
      */
     private $dateStart;
-
+    
+    
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="date_end", type="datetime")
-     * @Assert\NotBlank()
+     * @ORM\Column(type="float")
      */
-    private $dateEnd;
+    private $longitude;
+    
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $latitude;
+
 
     /**
      * Set place
@@ -92,44 +89,39 @@ class Event extends Post
     {
         return $this->dateStart;
     }
-
+    
+        
     /**
-     * Set dateEnd
-     *
-     * @param \DateTime $dateEnd
-     *
-     * @return Event
+     * @return float
      */
-    public function setDateEnd($dateEnd)
+    public function getLatitude()
     {
-        $this->dateEnd = $dateEnd;
-
-        return $this;
+        return $this->latitude;
     }
 
     /**
-     * Get dateEnd
-     *
-     * @return \DateTime
+     * @param float $latitude
      */
-    public function getDateEnd()
+    public function setLatitude($latitude)
     {
-        return $this->dateEnd;
+        $this->latitude = $latitude;
+    }
+    
+    
+    /**
+     * @return float
+     */
+    public function getLongitude()
+    {
+        return $this->longitude;
     }
 
     /**
-     * @return string
+     * @param float $longitude
      */
-    public function getExternalLink()
+    public function setLongitude($longitude)
     {
-        return $this->externalLink;
+        $this->longitude = $longitude;
     }
 
-    /**
-     * @param string $externalLink
-     */
-    public function setExternalLink($externalLink)
-    {
-        $this->externalLink = $externalLink;
-    }
 }

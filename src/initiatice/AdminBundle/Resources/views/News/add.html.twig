@@ -5,10 +5,10 @@
 
     <div class="input-field">{{ form_row(form.title) }}</div>
     <div class="input-field">{{ form_row(form.type) }}</div>
-    <div class="input-field">{{ form_row(form.profile) }}</div>
+    {{ form_row(form.profile) }}
     <div class="input-field">{{ form_row(form.abstract) }}</div>
     <div>{{ form_row(form.content) }}</div>
-    {{ form_row(form.save) }}
+    {{ form_row(form.save, {'attr': {'class': 'btn waves-effect waves-light'}} ) }}
 
     {{ form_end(form) }}
 {% endblock %}
