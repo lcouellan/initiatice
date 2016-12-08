@@ -9,8 +9,13 @@
                 <ul id="nav-mobile" class="left hide-on-med-and-down">
                     <li><a href="{{ path("initiatice_admin_news_index") }}">News</a></li>
                     <li><a href="{{ path("initiatice_admin_event_index") }}">Evènements</a></li>
-                    <li><a href="{{ path("initiatice_admin_forum_question_index") }}">Questions du forum</a></li>
-                    <li><a href="{{ path("initiatice_admin_forum_comment_index") }}">Commentaires du forum</a></li>
+                    <li><a href='#' data-activates='forum' class='dropdown-button'>Forum</a>
+                        <!-- Dropdown Structure -->
+                        <ul id='forum' class='dropdown-content'>
+                            <li><a href="{{ path("initiatice_admin_forum_question_index") }}">Questions</a></li>
+                            <li><a href="{{ path("initiatice_admin_forum_comment_index") }}">Commentaires</a></li>
+                        </ul>
+                    </li>
                     <li><a href="{{ path("initiatice_admin_teacher_index") }}">Enseignants</a></li>
                 </ul>
             </div>
