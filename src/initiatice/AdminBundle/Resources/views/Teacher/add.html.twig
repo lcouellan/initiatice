@@ -7,7 +7,7 @@
     <div class="input-field">{{ form_row(form.lastname) }}</div>
     <div class="input-field">{{ form_row(form.email) }}</div>
     <div class="input-field">{{ form_row(form.plainPassword) }}</div>
-    <div class="input-field">{{ form_row(form.enabled) }}</div>
+    <div>{{ form_widget(form.enabled) }} {{ form_label(form.enabled) }}</div>
     {{ form_row(form.save) }}
 
     {{ form_end(form) }}

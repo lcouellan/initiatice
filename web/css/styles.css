@@ -1,3 +1,6 @@
 .table-actions-2 {
     width: 100px;
 }
+nav .dropdown-content {
+    margin-top: 64px!important;
+}
