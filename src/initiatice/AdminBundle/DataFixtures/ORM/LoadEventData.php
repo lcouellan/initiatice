@@ -10,26 +10,26 @@ class LoadUserData implements FixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-        $e1 = new Event();
-        $e1->setTitle('Le champ des possibles avec Moodle');
-        $e1->setType("Café'TICE");
-        $e1->setProfile(1);
-        $e1->setPlace('Belvedère, bâtiment D · campus 1');
-        $e1->setDateStart(new \DateTime('2015-10-04'));
-        $e1->setDateEnd(new \DateTime('2015-10-04'));
-        $e1->setDateAdd(new \DateTime());
-        $e1->setDateUpdate(new \DateTime());
-        $e1->setMiniature("http://cemu.unicaen.fr/servlet/com.univ.collaboratif.utils.LectureFichiergw?ID_FICHIER=1339426835181&ID_FICHE=42926");
-        $e1->setContentImage("http://cemu.unicaen.fr/servlet/com.univ.collaboratif.utils.LectureFichiergw?ID_FICHIER=1339426835480&ID_FICHE=43024");
-        $e1->setExternalLink("https://www.canal-u.tv/video/centre_d_enseignement_multimedia_universitaire_c_e_m_u/08_learning_pitch_pitchez_votre_outil_pedagogique_en_5_min_jipn_2016.21253");
-        $manager->persist($e1);
+        $e = new Event();
+        $e->setTitle('Le champ des possibles avec Moodle');
+        $e->setType("Café'TICE");
+        $e->setProfile(1);
+        $e->setPlace('Belvedère, bâtiment D · campus 1');
+        $e->setDateStart(new \DateTime('2015-10-04'));
+        $e->setDateEnd(new \DateTime('2015-10-04'));
+        $e->setMiniature("http://cemu.unicaen.fr/servlet/com.univ.collaboratif.utils.LectureFichiergw?ID_FICHIER=1339426835181&ID_FICHE=42926");
+        $e->setContentImage("http://cemu.unicaen.fr/servlet/com.univ.collaboratif.utils.LectureFichiergw?ID_FICHIER=1339426835480&ID_FICHE=43024");
+        $e->setExternalLink("https://www.canal-u.tv/video/centre_d_enseignement_multimedia_universitaire_c_e_m_u/08_learning_pitch_pitchez_votre_outil_pedagogique_en_5_min_jipn_2016.21253");
+        $e->setDateAdd(new \DateTime());
+        $e->setDateUpdate(new \DateTime());
+        $manager->persist($e);
 
-        $e2 = new Event();
-        $e2->setTitle("Journée d'Innovations Pédagogiques 2016");
-        $e2->setType("JIPN");
-        $e2->setProfile(2);
-        $e2->setAbstract("Les JIPN Les Journées d'Innovations Pédagogiques Normandes sont organisées annuellement en collaboration avec la Région Normandie (Réseau Communotic).");
-        $e2->setContent("À l’ère du numérique, les enseignants doivent faire face à de nouvelles problématiques : l’évolution des outils numériques, la massification des enseignements, le profil des étudiants, le changement des attitudes et des mentalités. Ils doivent s'adapter à un nouveau public (Digital Natives) dont le rapport au savoir, à l'apprentissage a évolué. Comment réinventer ses pratiques pédagogiques ? Comment innover en pédagogie ?
+        $e = new Event();
+        $e->setTitle("Journée d'Innovations Pédagogiques 2016");
+        $e->setType("JIPN");
+        $e->setProfile(2);
+        $e->setAbstract("Les JIPN Les Journées d'Innovations Pédagogiques Normandes sont organisées annuellement en collaboration avec la Région Normandie (Réseau Communotic).");
+        $e->setContent("À l’ère du numérique, les enseignants doivent faire face à de nouvelles problématiques : l’évolution des outils numériques, la massification des enseignements, le profil des étudiants, le changement des attitudes et des mentalités. Ils doivent s'adapter à un nouveau public (Digital Natives) dont le rapport au savoir, à l'apprentissage a évolué. Comment réinventer ses pratiques pédagogiques ? Comment innover en pédagogie ?
 
 Ces 2 jours JIPN 2016 ont été l’occasion d'échanger sur les outils pédagogiques, les nouvelles formes d'apprentissage avec un focus sur l'évaluation mais également d’imaginer les pratiques pédagogiques innovantes.
 
@@ -38,16 +38,15 @@ La seconde journée était dédiée aux ateliers.
 
 Toutes les conférences ont été captées, vous pouvez les revoir sur Canal-U :
 http://www.canal-u.tv/producteurs/centre_d_enseignement_multimedia_universitaire_c_e_m_u/cemu/jipn2016");
-        $e2->setPlace('Amphi Pierre Daure - Campus 1');
-        $e2->setDateStart(new \DateTime('2016-03-29'));
-        $e2->setDateEnd(new \DateTime('2016-03-30'));
-        $e2->setDateAdd(new \DateTime());
-        $e2->setDateUpdate(new \DateTime());
-        $e2->setMiniature("http://cemu.unicaen.fr/servlet/com.univ.collaboratif.utils.LectureFichiergw?ID_FICHIER=1339426833966&ID_FICHE=42926");
-        $e2->setContentImage("http://cemu.unicaen.fr/servlet/com.univ.collaboratif.utils.LectureFichiergw?ID_FICHIER=1339426835468&ID_FICHE=44151");
-        $e2->setExternalLink('https://www.canal-u.tv/video/centre_d_enseignement_multimedia_universitaire_c_e_m_u/08_learning_pitch_pitchez_votre_outil_pedagogique_en_5_min_jipn_2016.21253');
-        $manager->persist($e2);
-
+        $e->setPlace('Amphi Pierre Daure - Campus 1');
+        $e->setDateStart(new \DateTime('2016-03-29'));
+        $e->setDateEnd(new \DateTime('2016-03-30'));
+        $e->setMiniature("http://cemu.unicaen.fr/servlet/com.univ.collaboratif.utils.LectureFichiergw?ID_FICHIER=1339426833966&ID_FICHE=42926");
+        $e->setContentImage("http://cemu.unicaen.fr/servlet/com.univ.collaboratif.utils.LectureFichiergw?ID_FICHIER=1339426835468&ID_FICHE=44151");
+        $e->setExternalLink('https://www.canal-u.tv/video/centre_d_enseignement_multimedia_universitaire_c_e_m_u/08_learning_pitch_pitchez_votre_outil_pedagogique_en_5_min_jipn_2016.21253');
+        $e->setDateAdd(new \DateTime());
+        $e->setDateUpdate(new \DateTime());
+        $manager->persist($e);
 
         $manager->flush();
     }

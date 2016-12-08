@@ -15,7 +15,7 @@
             <th data-field="date">Date</th>
             <th data-field="place">Lieu</th>
             <th data-field="date_update">Dernière modification</th>
-            <th data-field="actions">Actions &emsp; &emsp;</th>
+            <th data-field="actions" class="table-actions-2">Actions &emsp; &emsp;</th>
         </tr>
         </thead>
 
@@ -36,31 +36,4 @@
         {% endfor %}
         </tbody>
     </table>
-{% endblock %}
-{% block initiaticeAdmin_footer %}
-    <footer class="blue lighten-1 white-text page-footer">
-      <div class="container">
-        <div class="row">
-          <div class="col l6 s12">
-            <h5 class="white-text">Interface d'adminitration</h5>
-            <p class="grey-text text-lighten-4">Vous pouvez modérer l'application mobile INITIATICE via cette interface d'administration.</p>
-          </div>
-          <div class="col l4 offset-l2 s12">
-            <h5 class="white-text">Liens utiles</h5>
-            <ul>
-              <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="footer-copyright">
-        <div class="container">
-        © 2016 Copyright CEMU
-        <a class="grey-text text-lighten-4 right" href="http://cemu.unicaen.fr/l-espace-enseignants/dispositif-initiatice/dispositif-initiatice-diffusion-aide-echange-226398.kjsp?RH=1192024540178">Plus d'info</a>
-        </div>
-      </div>
-    </footer>
 {% endblock %}

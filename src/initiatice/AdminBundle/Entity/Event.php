@@ -3,6 +3,7 @@
 namespace initiatice\AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Post
@@ -16,6 +17,7 @@ class Event extends Post
      * @var string
      *
      * @ORM\Column(name="place", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $place;
 
@@ -23,6 +25,7 @@ class Event extends Post
      * @var string
      *
      * @ORM\Column(name="external_link", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $externalLink;
 
@@ -30,6 +33,7 @@ class Event extends Post
      * @var \DateTime
      *
      * @ORM\Column(name="date_start", type="datetime")
+     * @Assert\NotBlank()
      */
     private $dateStart;
 
@@ -37,6 +41,7 @@ class Event extends Post
      * @var \DateTime
      *
      * @ORM\Column(name="date_end", type="datetime")
+     * @Assert\NotBlank()
      */
     private $dateEnd;
 

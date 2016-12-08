@@ -10,17 +10,17 @@ class LoadProfileData implements FixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-        $e1 = new Profile();
-        $e1->setName('Unicaen');
-        $manager->persist($e1);
+        $p = new Profile();
+        $p->setName('Unicaen');
+        $manager->persist($p);
 
-        $e2 = new Profile();
-        $e2->setName('Communotic');
-        $manager->persist($e2);
+        $p = new Profile();
+        $p->setName('Communotic');
+        $manager->persist($p);
 
-        $e3 = new Profile();
-        $e3->setName('Extérieur');
-        $manager->persist($e3);
+        $p = new Profile();
+        $p->setName('Extérieur');
+        $manager->persist($p);
 
         $manager->flush();
     }

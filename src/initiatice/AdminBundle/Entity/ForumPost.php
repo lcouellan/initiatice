@@ -4,6 +4,7 @@ namespace initiatice\AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\MappedSuperclass;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Post
@@ -25,6 +26,7 @@ class ForumPost
      * @var string
      *
      * @ORM\Column(name="pseudo", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $pseudo;
 

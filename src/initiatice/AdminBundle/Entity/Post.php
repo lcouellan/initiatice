@@ -4,6 +4,7 @@ namespace initiatice\AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\MappedSuperclass;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Post
@@ -25,6 +26,7 @@ class Post
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $title;
 
@@ -43,23 +45,10 @@ class Post
     private $content;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="date_add", type="datetime")
-     */
-    private $dateAdd;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="date_update", type="datetime")
-     */
-    private $dateUpdate;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="type", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $type;
 
@@ -67,6 +56,7 @@ class Post
      * @var integer
      *
      * @ORM\Column(name="profile", type="integer")
+     * @Assert\NotBlank()
      */
     private $profile;
 
@@ -83,6 +73,20 @@ class Post
      * @ORM\Column(name="content_image", type="string", length=255)
      */
     private $contentImage;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_add", type="datetime")
+     */
+    private $dateAdd;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_update", type="datetime")
+     */
+    private $dateUpdate;
 
 
     /**
@@ -111,7 +115,7 @@ class Post
 
     /**
      * Get title
-     *à
+     *
      * @return string
      */
     public function getTitle()
@@ -165,54 +169,6 @@ class Post
     public function getContent()
     {
         return $this->content;
-    }
-
-    /**
-     * Set dateAdd
-     *
-     * @param \DateTime $dateAdd
-     *
-     * @return Post
-     */
-    public function setDateAdd($dateAdd)
-    {
-        $this->dateAdd = $dateAdd;
-
-        return $this;
-    }
-
-    /**
-     * Get dateAdd
-     *
-     * @return \DateTime
-     */
-    public function getDateAdd()
-    {
-        return $this->dateAdd;
-    }
-
-    /**
-     * Set dateUpdate
-     *
-     * @param \DateTime $dateUpdate
-     *
-     * @return Post
-     */
-    public function setDateUpdate($dateUpdate)
-    {
-        $this->dateUpdate = $dateUpdate;
-
-        return $this;
-    }
-
-    /**
-     * Get dateUpdate
-     *
-     * @return \DateTime
-     */
-    public function getDateUpdate()
-    {
-        return $this->dateUpdate;
     }
 
     /**
@@ -285,5 +241,37 @@ class Post
     public function setProfile($profile)
     {
         $this->profile = $profile;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDateAdd()
+    {
+        return $this->dateAdd;
+    }
+
+    /**
+     * @param \DateTime $dateAdd
+     */
+    public function setDateAdd($dateAdd)
+    {
+        $this->dateAdd = $dateAdd;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDateUpdate()
+    {
+        return $this->dateUpdate;
+    }
+
+    /**
+     * @param \DateTime $dateUpdate
+     */
+    public function setDateUpdate($dateUpdate)
+    {
+        $this->dateUpdate = $dateUpdate;
     }
 }

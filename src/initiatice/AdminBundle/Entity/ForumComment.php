@@ -3,6 +3,7 @@
 namespace initiatice\AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Comment
@@ -16,6 +17,7 @@ class ForumComment extends ForumPost
      * @var int
      *
      * @ORM\Column(name="question_id", type="integer")
+     * @Assert\NotBlank()
      */
     private $questionId;
 

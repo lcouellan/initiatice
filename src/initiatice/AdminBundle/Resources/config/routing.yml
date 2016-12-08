@@ -99,3 +99,25 @@ initiatice_admin_forum_comment_remove:
     defaults: { _controller: initiaticeAdminBundle:ForumComment:remove }
     requirements:
         id: \d+
+
+
+
+initiatice_admin_teacher_index:
+    path:     /teacher
+    defaults: { _controller: initiaticeAdminBundle:Teacher:index }
+
+initiatice_admin_teacher_add:
+    path:     /teacher/add
+    defaults: { _controller: initiaticeAdminBundle:Teacher:add }
+
+initiatice_admin_teacher_edit:
+    path:     /teacher/edit/{id}
+    defaults: { _controller: initiaticeAdminBundle:Teacher:edit }
+    requirements:
+            id: \d+
+
+initiatice_admin_teacher_remove:
+    path:     /teacher/remove/{id}
+    defaults: { _controller: initiaticeAdminBundle:Teacher:remove }
+    requirements:
+        id: \d+
