@@ -15,6 +15,7 @@ class LoadNewsData implements FixtureInterface
         $n->setType("Formations");
         $n->setProfile(1);
         $n->setExternalLink("https://www.canal-u.tv/video/centre_d_enseignement_multimedia_universitaire_c_e_m_u/08_learning_pitch_pitchez_votre_outil_pedagogique_en_5_min_jipn_2016.21253");
+        $n->setAbstract("Inscriptions pour les partenaires");
         $n->setContent("Les inscriptions des partenaires / communotic à nos ateliers de formations se font maintenant directement sur le questionnaire en ligne : https://limesurvey.unicaen.fr/index.php/376671/lang-fr");
         $n->setContentImage("http://cemu.unicaen.fr/servlet/com.univ.collaboratif.utils.LectureFichiergw?ID_FICHIER=1339426835480&ID_FICHE=43024");
         $n->setDateAdd(new \DateTime());

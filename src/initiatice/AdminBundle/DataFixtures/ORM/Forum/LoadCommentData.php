@@ -20,7 +20,7 @@ class LoadCommentData implements FixtureInterface
         $e1 = new ForumComment();
         $e1->setPseudo('Stéphanie');
         $e1->setContent('Bonjour, vous ne devriez pas faire cours le lundi matin.');
-        $e1->setQuestionId(1);
+        $e1->setQuestionId(10);
         $e1->setDateAdd(new \DateTime());
         $e1->setDateUpdate(new \DateTime());
         $manager->persist($e1);
@@ -28,7 +28,7 @@ class LoadCommentData implements FixtureInterface
         $e2 = new ForumComment();
         $e2->setPseudo('Lucien');
         $e2->setContent('Bonjour, avez vous essayé de mettre le CM le matin, et le TD un autre jour ?');
-        $e2->setQuestionId(1);
+        $e2->setQuestionId(10);
         $e2->setDateAdd(new \DateTime());
         $e2->setDateUpdate(new \DateTime());
         $manager->persist($e2);
