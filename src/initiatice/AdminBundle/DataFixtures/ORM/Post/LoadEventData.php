@@ -22,6 +22,7 @@ class LoadEventData implements FixtureInterface
         $e->setContentImage("http://cemu.unicaen.fr/servlet/com.univ.collaboratif.utils.LectureFichiergw?ID_FICHIER=1339426835480&ID_FICHE=43024");
         $e->setExternalLink("https://www.canal-u.tv/video/centre_d_enseignement_multimedia_universitaire_c_e_m_u/08_learning_pitch_pitchez_votre_outil_pedagogique_en_5_min_jipn_2016.21253");
         $e->setDateAdd(new \DateTime());
+        $e->setDateUpdate(new \DateTime());
         $manager->persist($e);
 
         $e = new Event();
@@ -45,6 +46,7 @@ http://www.canal-u.tv/producteurs/centre_d_enseignement_multimedia_universitaire
         $e->setContentImage("http://cemu.unicaen.fr/servlet/com.univ.collaboratif.utils.LectureFichiergw?ID_FICHIER=1339426835468&ID_FICHE=44151");
         $e->setExternalLink('https://www.canal-u.tv/video/centre_d_enseignement_multimedia_universitaire_c_e_m_u/08_learning_pitch_pitchez_votre_outil_pedagogique_en_5_min_jipn_2016.21253');
         $e->setDateAdd(new \DateTime());
+        $e->setDateUpdate(new \DateTime());
         $manager->persist($e);
 
         $manager->flush();

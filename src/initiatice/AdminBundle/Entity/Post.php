@@ -83,6 +83,13 @@ class Post
      */
     private $dateAdd;
     
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_update", type="datetime", nullable=true)
+     */
+    private $dateUpdate;
+    
 
 
 
@@ -255,6 +262,22 @@ class Post
     public function setDateAdd($dateAdd)
     {
         $this->dateAdd = $dateAdd;
+    }
+    
+    /**
+     * @return \DateTime
+     */
+    public function getDateUpdate()
+    {
+        return $this->dateUpdate;
+    }
+
+    /**
+     * @param \DateTime $dateUpdate
+     */
+    public function setDateUpdate($dateUpdate)
+    {
+        $this->dateUpdate = $dateUpdate;
     }
 
 }

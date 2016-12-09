@@ -36,11 +36,11 @@ class ForumQuestionController extends Controller
         /*
          * Validation
          */
-        $isNotNull = $request->request->get('pseudo')
+        $isNotNull = $request->request->get('userId')
             && $request->request->get('content')
             && $request->request->get('title');
 
-        $isNotEmpty = sizeof($request->request->get('pseudo')) > 0
+        $isNotEmpty = sizeof($request->request->get('userId')) > 0
             && sizeof($request->request->get('content')) > 0
             && sizeof($request->request->get('title')) > 0;
 
@@ -49,7 +49,7 @@ class ForumQuestionController extends Controller
          */
         if($isNotNull && $isNotEmpty) {
             $question = new ForumQuestion();
-            $question->setPseudo( substr($request->request->get('pseudo'), 0, 255) );
+            $question->setUserId( substr($request->request->get('userId'), 0, 255) );
             $question->setContent( substr($request->request->get('content'), 0, 999999) );
             $question->setTitle( substr($request->request->get('title'), 0, 255) );
             $question->setDateAdd(new \DateTime());
