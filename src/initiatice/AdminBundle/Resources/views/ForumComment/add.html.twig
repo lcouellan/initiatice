@@ -2,9 +2,16 @@
 {% block initiaticeAdmin_body %}
     <h3>Ajouter un commentaire</h3>
     {{ form_start(form) }}
-    {{ form_widget(form) }}
+
+    <div class="row">
+        <div class="input-field col s6">{{ form_row(form.userId) }}</div>
+        <div class="input-field col s6">{{ form_row(form.questionId) }}</div>
+    </div>
+    <div class="input-field">{{ form_row(form.content) }}</div>
+
+    {{ form_row(form.save, {'attr': {'class': 'btn waves-effect waves-light'}} ) }}
     {{ form_end(form) }}
 {% endblock %}
 {% block javascripts %}
-{{ parent() }}
+    {{ parent() }}
 {% endblock %}

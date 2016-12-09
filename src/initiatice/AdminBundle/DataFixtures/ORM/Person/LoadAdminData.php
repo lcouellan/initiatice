@@ -4,13 +4,13 @@ namespace initiatice\AdminBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use initiatice\AdminBundle\Entity\User;
+use initiatice\AdminBundle\Entity\Admin;
 
 class LoadAdminData implements FixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-        $u = new User();
+        $u = new Admin();
         $u->setUsername('admin');
         $u->setPlainPassword('admin');
         $u->setEmail("admin@mail.com");

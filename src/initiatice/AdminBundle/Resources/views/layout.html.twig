@@ -7,7 +7,7 @@
             <div class="blue lighten-1 white-text nav-wrapper">
                 <a href="#" class="brand-logo center">Initiatice Dashboard</a>
                 <ul id="nav-mobile" class="left hide-on-med-and-down">
-                    <li><a href="{{ path("initiatice_admin_news_index") }}">News</a></li>
+                    <li><a href="{{ path("initiatice_admin_news_index") }}">Actualités</a></li>
                     <li><a href="{{ path("initiatice_admin_event_index") }}">Evènements</a></li>
                     <li><a href='#' data-activates='forum' class='dropdown-button'>Forum</a>
                         <!-- Dropdown Structure -->
@@ -16,7 +16,13 @@
                             <li><a href="{{ path("initiatice_admin_forum_comment_index") }}">Commentaires</a></li>
                         </ul>
                     </li>
-                    <li><a href="{{ path("initiatice_admin_teacher_index") }}">Enseignants</a></li>
+                    <li><a href='#' data-activates='person' class='dropdown-button'>Personnes</a>
+                        <!-- Dropdown Structure -->
+                        <ul id='person' class='dropdown-content'>
+                            <li><a href="{{ path("initiatice_admin_user_index") }}">Utilisateurs</a></li>
+                            <li><a href="{{ path("initiatice_admin_admin_index") }}">Modérateurs</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </nav>

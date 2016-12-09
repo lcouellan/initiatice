@@ -2,13 +2,13 @@ initiatice_admin_homepage:
     path:     /
     defaults: { _controller: initiaticeAdminBundle:Default:index }
 
-initiatice_admin_user_index:
-    path:     /user
-    defaults: { _controller: initiaticeAdminBundle:User:index }
+initiatice_admin_admin_index:
+    path:     /admin
+    defaults: { _controller: initiaticeAdminBundle:Admin:index }
 
-initiatice_admin_user_remove:
-    path:     /user/remove/{id}
-    defaults: { _controller: initiaticeAdminBundle:User:remove }
+initiatice_admin_admin_remove:
+    path:     /admin/remove/{id}
+    defaults: { _controller: initiaticeAdminBundle:Admin:remove }
     requirements:
         id: \d+
 
@@ -102,22 +102,22 @@ initiatice_admin_forum_comment_remove:
 
 
 
-initiatice_admin_teacher_index:
-    path:     /teacher
-    defaults: { _controller: initiaticeAdminBundle:Teacher:index }
+initiatice_admin_user_index:
+    path:     /user
+    defaults: { _controller: initiaticeAdminBundle:User:index }
 
-initiatice_admin_teacher_add:
-    path:     /teacher/add
-    defaults: { _controller: initiaticeAdminBundle:Teacher:add }
+initiatice_admin_user_add:
+    path:     /user/add
+    defaults: { _controller: initiaticeAdminBundle:User:add }
 
-initiatice_admin_teacher_edit:
-    path:     /teacher/edit/{id}
-    defaults: { _controller: initiaticeAdminBundle:Teacher:edit }
+initiatice_admin_user_edit:
+    path:     /user/edit/{id}
+    defaults: { _controller: initiaticeAdminBundle:User:edit }
     requirements:
             id: \d+
 
-initiatice_admin_teacher_remove:
-    path:     /teacher/remove/{id}
-    defaults: { _controller: initiaticeAdminBundle:Teacher:remove }
+initiatice_admin_user_remove:
+    path:     /user/remove/{id}
+    defaults: { _controller: initiaticeAdminBundle:User:remove }
     requirements:
         id: \d+

@@ -1,0 +1,32 @@
+{% extends "initiaticeAdminBundle::layout.html.twig" %}
+{% block initiaticeAdmin_body %}
+    <h3>Editer l'utilisateur</h3>
+    {{ form_start(form) }}
+
+    <div class="row">
+        <div class="input-field col s6">{{ form_row(form.firstname) }}</div>
+        <div class="input-field col s6">{{ form_row(form.lastname) }}</div>
+    </div>
+    <div class="row">
+        <div class="input-field col s6">{{ form_row(form.email) }}</div>
+        <div class="col s6">{{ form_row(form.profile) }}</div>
+    </div>
+    <div class="row">
+        {% if not form.vars.valid %}
+            <div class="col s12">{{ form_errors(form.plainPassword.first) }}</div>
+        {% endif  %}
+        {% for pwd in form.plainPassword %}
+            <div class="input-field col s6">{{ form_label(pwd) }} {{ form_widget(pwd) }}</div>
+        {% endfor %}
+    </div>
+    <div class="input-field">{{ form_row(form.description) }}</div>
+
+    <div>
+        {{ form_widget(form.save, {'attr': {'class': 'btn waves-effect waves-light'}} ) }}
+        <span class="right">{{ form_widget(form.enabled) }} {{ form_label(form.enabled) }}</span>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+{% endblock %}

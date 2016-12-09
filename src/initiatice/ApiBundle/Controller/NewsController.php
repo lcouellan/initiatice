@@ -20,10 +20,10 @@ class NewsController extends Controller
         $normalizers = array(new ObjectNormalizer());
         $this->serializer = new Serializer($normalizers, $encoders);
     }
+    private function getBd() { return $this->getDoctrine()->getManager(); }
     private function getJsonResponse($data) {
         $response = new JsonResponse();
-        $response->setData($data);
-        $response->headers->set('Content-Type', 'application/json');
+        $response->setData($data)->headers->set('Content-Type', 'application/json');
         return $response;
     }
 
@@ -35,15 +35,12 @@ class NewsController extends Controller
     {
         $limit = $request->query->get('limit') == null ? null : $request->query->get('limit');
         $findBy = [];
-        if($request->query->get('profile') != null) $findBy['profile'] = $request->query->get('profile');
-
-        $news = $this->getDoctrine()
-            ->getRepository('initiaticeAdminBundle:News')
-            ->findBy($findBy, null, $limit, null);
+        if($request->query->get('profile') != null)
+            $findBy['profile'] = $request->query->get('profile');
+        $news = $this->getBd()->getRepository('initiaticeAdminBundle:News')->findBy($findBy, null, $limit, null);
         $data = [];
-        foreach($news as $new) {
+        foreach($news as $new)
             $data[] = $this->serializer->normalize($new, null);
-        }
         return $this->getJsonResponse($data);
     }
 
@@ -53,9 +50,7 @@ class NewsController extends Controller
      */
     public function showAction($id)
     {
-        $new = $this->getDoctrine()
-            ->getRepository('initiaticeAdminBundle:News')
-            ->find($id);
+        $new = $this->getBd()->getRepository('initiaticeAdminBundle:News')->find($id);
         return $this->getJsonResponse($this->serializer->normalize($new, null));
     }
 }

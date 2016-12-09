@@ -21,10 +21,10 @@ class ForumQuestionController extends Controller
         $normalizers = array(new ObjectNormalizer());
         $this->serializer = new Serializer($normalizers, $encoders);
     }
+    private function getBd() { return $this->getDoctrine()->getManager(); }
     private function getJsonResponse($data) {
         $response = new JsonResponse();
-        $response->setData($data);
-        $response->headers->set('Content-Type', 'application/json');
+        $response->setData($data)->headers->set('Content-Type', 'application/json');
         return $response;
     }
 
@@ -54,9 +54,7 @@ class ForumQuestionController extends Controller
             $question->setTitle( substr($request->request->get('title'), 0, 255) );
             $question->setDateAdd(new \DateTime());
             $question->setDateUpdate(new \DateTime());
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($question);
-            $em->flush();
+            $this->getBd()->persist($question)->flush();
             return new Response('OK: QUESTION ADDED', 201);
         }
         return new Response('ERROR: QUESTION NOT ADDED', 400);

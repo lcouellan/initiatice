@@ -1,11 +1,17 @@
 {% extends "initiaticeAdminBundle::layout.html.twig" %}
 {% block initiaticeAdmin_body %}
-    <a class="waves-effect waves-light btn" href="{{ path('initiatice_admin_forum_question_add') }}">Ajouter</a>
+    </br>
+    <div class="row">
+        <div class="col l2 offset-l10">
+            <a class="z-depth-3 waves-effect waves-light btn blue darken-2" href="{{ path('initiatice_admin_forum_question_add') }}">Ajouter</a>
+        </div>
+    </div>
 
-    <table class="striped">
-        <thead>
+    <table class="striped z-depth-1">
+        <thead class ="blue darken-2 white-text">
         <tr>
-            <th data-field="pseudo">Pseudo</th>
+            <th data-field="id">ID</th>
+            <th data-field="userId">Utilisateur</th>
             <th data-field="title">Titre</th>
             <th data-field="content">Contenu</th>
             <th data-field="date_update">Dernière modification</th>
@@ -14,15 +20,21 @@
         </thead>
 
         <tbody>
-        {% for c in questions %}
+        {% for v in questions %}
         <tr>
-            <td>{{ c.pseudo|slice(0, 50) }}</td>
-            <td>{{ c.title }}</td>
-            <td>{{ c.content|slice(0, 50) }}</td>
-            <td>{{ c.dateUpdate|date("d/m/Y") }}</td>
+            <td>{{ v.id }}</td>
+            <td>{{ v.userId }}</td>
+            <td>{{ v.title }}</td>
+            <td>{{ v.content|slice(0, 50) }}</td>
+            <td>{{ v.dateUpdate|date("d/m/Y") }}</td>
             <td>
-                <a class="waves-effect waves-light btn" href="{{ path('initiatice_admin_forum_question_edit', {'id': c.id}) }}"><i class="material-icons left">mode_edit</i></a>
-                <a class="waves-effect waves-light btn" href="{{ path('initiatice_admin_forum_question_remove', {'id': c.id}) }}"><i class="material-icons left">delete</i></a>
+                <a class="btn-floating waves-effect waves-light z-depth-2 blue darken-1"
+                   href="{{ path('initiatice_admin_forum_question_edit', {'id': v.id}) }}">
+                    <i class="material-icons left">mode_edit</i></a>
+                <a class="btn-floating waves-effect waves-light z-depth-2 blue darken-1"
+                   href="{{ path('initiatice_admin_forum_question_remove', {'id': v.id}) }}"
+                   onclick="showModal(event, this, 'remove_modal'); return false;">
+                    <i class="material-icons left">delete</i></a>
             </td>
         </tr>
         {% endfor %}

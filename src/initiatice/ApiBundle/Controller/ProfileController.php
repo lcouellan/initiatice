@@ -20,10 +20,10 @@ class ProfileController extends Controller
         $normalizers = array(new ObjectNormalizer());
         $this->serializer = new Serializer($normalizers, $encoders);
     }
+    private function getBd() { return $this->getDoctrine()->getManager(); }
     private function getJsonResponse($data) {
         $response = new JsonResponse();
-        $response->setData($data);
-        $response->headers->set('Content-Type', 'application/json');
+        $response->setData($data)->headers->set('Content-Type', 'application/json');
         return $response;
     }
 
@@ -34,14 +34,10 @@ class ProfileController extends Controller
     public function listAction(Request $request)
     {
         $limit = $request->query->get('limit') == null ? null : $request->query->get('limit');
-
-        $profiles = $this->getDoctrine()
-            ->getRepository('initiaticeAdminBundle:Profile')
-            ->findBy([], null, $limit, null);
+        $profiles = $this->getBd()->getRepository('initiaticeAdminBundle:Profile')->findBy([], null, $limit, null);
         $data = [];
-        foreach($profiles as $profile) {
+        foreach($profiles as $profile)
             $data[] = $this->serializer->normalize($profile, null);
-        }
         return $this->getJsonResponse($data);
     }
 
@@ -51,9 +47,7 @@ class ProfileController extends Controller
      */
     public function showAction($id)
     {
-        $profile = $this->getDoctrine()
-            ->getRepository('initiaticeAdminBundle:Profile')
-            ->find($id);
+        $profile = $this->getBd()->getRepository('initiaticeAdminBundle:Profile')->find($id);
         return $this->getJsonResponse($this->serializer->normalize($profile, null));
     }
 }

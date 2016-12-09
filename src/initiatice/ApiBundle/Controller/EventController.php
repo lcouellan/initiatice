@@ -20,10 +20,10 @@ class EventController extends Controller
         $normalizers = array(new ObjectNormalizer());
         $this->serializer = new Serializer($normalizers, $encoders);
     }
+    private function getBd() { return $this->getDoctrine()->getManager(); }
     private function getJsonResponse($data) {
         $response = new JsonResponse();
-        $response->setData($data);
-        $response->headers->set('Content-Type', 'application/json');
+        $response->setData($data)->headers->set('Content-Type', 'application/json');
         return $response;
     }
 
@@ -35,15 +35,12 @@ class EventController extends Controller
     {
         $limit = $request->query->get('limit') == null ? null : $request->query->get('limit');
         $findBy = [];
-        if($request->query->get('profile') != null) $findBy['profile'] = $request->query->get('profile');
-
-        $events = $this->getDoctrine()
-            ->getRepository('initiaticeAdminBundle:Event')
-            ->findBy($findBy, null, $limit, null);
+        if($request->query->get('profile') != null)
+            $findBy['profile'] = $request->query->get('profile');
+        $events = $this->getBd()->getRepository('initiaticeAdminBundle:Event')->findBy($findBy, null, $limit, null);
         $data = [];
-        foreach($events as $event) {
+        foreach($events as $event)
             $data[] = $this->serializer->normalize($event, null);
-        }
         return $this->getJsonResponse($data);
     }
 
@@ -53,9 +50,7 @@ class EventController extends Controller
      */
     public function showAction($id)
     {
-        $event = $this->getDoctrine()
-            ->getRepository('initiaticeAdminBundle:Event')
-            ->find($id);
+        $event = $this->getBd()->getRepository('initiaticeAdminBundle:Event')->find($id);
         return $this->getJsonResponse($this->serializer->normalize($event, null));
     }
 }

@@ -2,12 +2,20 @@
 {% block initiaticeAdmin_body %}
     <h3>Editer l'événement</h3>
     {{ form_start(form) }}
-    {{ form_widget(form) }}
+
+    <div class="row">
+        <div class="input-field col s10">{{ form_row(form.title) }}</div>
+        <div class="input-field col s2">{{ form_row(form.type) }}</div>
+    </div>
+    <div class="input-field">{{ form_row(form.abstract) }}</div>
+    <div class="input-field">{{ form_row(form.place) }}</div>
+    {{ form_row(form.dateStart) }}
+    <div>{{ form_row(form.content) }}</div>
+    <div class="input-field">{{ form_row(form.externalLink) }}</div>
+
+    {{ form_row(form.save, {'attr': {'class': 'btn waves-effect waves-light'}} ) }}
     {{ form_end(form) }}
 {% endblock %}
-{% block initiaticeAdmin_footer %}
-{% endblock %}
 {% block javascripts %}
-{{ parent() }}  
-<script> CKEDITOR.replace('form_content');</script>
+    {{ parent() }}
 {% endblock %}

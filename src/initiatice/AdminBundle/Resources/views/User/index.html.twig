@@ -1,28 +1,41 @@
 {% extends "initiaticeAdminBundle::layout.html.twig" %}
 {% block initiaticeAdmin_body %}
-<a class="waves-effect waves-light btn" href="{{ path('fos_user_registration_register') }}">Ajouter</a>
-    <table class="striped">
-        <thead>
+  </br>
+  <div class="row">
+    <div class="col l2 offset-l10">
+      <a class="z-depth-3 waves-effect waves-light btn blue darken-2" href="{{ path('initiatice_admin_user_add') }}">Ajouter</a>
+    </div>
+  </div>
+    <table class="striped z-depth-1">
+        <thead class ="blue darken-2 white-text">
         <tr>
+            <th data-field="id">ID</th>
+            <th data-field="firstname">Prénom</th>
+            <th data-field="lastname">Nom</th>
             <th data-field="email">Email</th>
-            <th data-field="username">Prénom</th>
-            <th data-field="enabled">Actif</th>
-            <th data-field="actions">Actions</th>
+            <th data-field="enabled">Activé</th>
+            <th data-field="actions" class="table-actions-2">Actions</th>
         </tr>
         </thead>
 
         <tbody>
-        {% for user in users %}
-            <tr>
-                <td>{{ user.email }}</td>
-                <td>{{ user.username }}</td>
-                <td>{{ user.enabled }}</td>
-                <td>
-                    <a class="waves-effect waves-light btn" href="{{ path('initiatice_admin_user_remove', {'id': user.id}) }}">
-                        <i class="material-icons left">delete</i>
-                    </a>
-                </td>
-            </tr>
+        {% for v in users %}
+        <tr>
+            <td>{{ v.id }}</td>
+            <td>{{ v.firstname|slice(0, 50) }}</td>
+            <td>{{ v.lastname|slice(0, 50) }}</td>
+            <td>{{ v.email|slice(0, 50) }}</td>
+            <td>{{ v.enabled }}</td>
+            <td>
+                <a class="btn-floating waves-effect waves-light z-depth-2 blue darken-1"
+                   href="{{ path('initiatice_admin_user_edit', {'id': v.id}) }}">
+                    <i class="material-icons left">mode_edit</i></a>
+                <a class="btn-floating waves-effect waves-light z-depth-2 blue darken-1"
+                   href="{{ path('initiatice_admin_user_remove', {'id': v.id}) }}"
+                   onclick="showModal(event, this, 'remove_modal'); return false;">
+                    <i class="material-icons left">delete</i></a>
+            </td>
+        </tr>
         {% endfor %}
         </tbody>
     </table>

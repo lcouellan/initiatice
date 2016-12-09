@@ -1,47 +1,48 @@
 <div class="row">
  <div class="col l4 offset-l4 z-depth-4 card-panel grey lighten-5 ">
      <form class=" fos_user_registration_registerlogin-form" action="{{ path("fos_user_registration_register") }}" method="post">
-       <input type="hidden" id="fos_user_registration_form__token" name="fos_user_registration_form[_token]" value="msd-TIzfw8sgxwVwRzXSV9W78PwIdWe0gXY-2lZR050" />            <div class="row">
+        <input type="hidden" id="fos_user_registration_form__token" name="fos_user_registration_form[_token]" value="msd-TIzfw8sgxwVwRzXSV9W78PwIdWe0gXY-2lZR050" />
+        <div class="row">
            <div class="input-field col s12 center">
            <img src="https://www.shareicon.net/data/128x128/2016/09/16/829837_people_512x512.png" alt="" class="circle responsive-img valign profile-image-login">
            <p class="center login-form-text">Inscrire un administrateur</p>
            </div>
-       </div>
-       <div class="row">
+        </div>
+        <div class="row">
            <div class="input-field col l10 offset-l1">
              <i class="material-icons prefix">email</i>
              <input type="text" id="fos_user_registration_form_email" name="fos_user_registration_form[email]" required="required">
              <label for="fos_user_registration_form_email">Adresse e-mail</label>
            </div>
-      </div>
-      <div class="row">
+        </div>
+        <div class="row">
          <div class="input-field col l10 offset-l1">
             <i class="material-icons prefix">account_circle</i>
             <input type="text"  id="fos_user_registration_form_username" name="fos_user_registration_form[username]" required="required" maxlength="255">
             <label for="fos_user_registration_form_username">Nom d&#039;utilisateur</label>
           </div>
-     </div>
-     <div class="row">
+        </div>
+        <div class="row">
          <div class="input-field col l10 offset-l1">
            <i class="material-icons prefix">lock</i>
            <input type="password" id="fos_user_registration_form_plainPassword_first" name="fos_user_registration_form[plainPassword][first]"  required="required">
            <label for="fos_user_registration_form_plainPassword_first">Mot de passe</label>
          </div>
-    </div>
-    <div class="row">
-        <div class="input-field col l10 offset-l1">
-          <i class="material-icons prefix">lock</i>
-          <input type="password" id="fos_user_registration_form_plainPassword_second" name="fos_user_registration_form[plainPassword][second]" required="required">
-          <label for="fos_user_registration_form_plainPassword_second">Répéter le mot de passe</label>
         </div>
-    </div>
-    <div class="row">
-         <div class="input-field col l10 offset-l1">
-         <button class="btn waves-effect waves-light col s12 purple darken-4" value="{{ 'registration.submit'|trans }}" id="_submit" name="_submit" type="submit">Connexion
-         <i class="material-icons right">send</i>
-         </button>
+        <div class="row">
+            <div class="input-field col l10 offset-l1">
+              <i class="material-icons prefix">lock</i>
+              <input type="password" id="fos_user_registration_form_plainPassword_second" name="fos_user_registration_form[plainPassword][second]" required="required">
+              <label for="fos_user_registration_form_plainPassword_second">Répéter le mot de passe</label>
+            </div>
+        </div>
+        <div class="row">
+             <div class="input-field col l10 offset-l1">
+             <button class="btn waves-effect waves-light col s12 purple darken-4" value="{{ 'registration.submit'|trans }}" id="_submit" name="_submit" type="submit">Connexion
+             <i class="material-icons right">send</i>
+             </button>
+             </div>
          </div>
-     </div>
      </form>
  </div>
 </div>

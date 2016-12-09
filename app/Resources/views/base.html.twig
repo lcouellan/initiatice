@@ -11,31 +11,44 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-{% block body %}{% endblock %}
-{% block javascripts %}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
-    <script src="//cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('select').material_select();
-            Materialize.updateTextFields();
-            $('.dropdown-button').dropdown({
-                inDuration: 300,
-                outDuration: 225,
-                constrain_width: false, // Does not change width of dropdown to that of the activator
-                hover: true, // Activate on hover
-                gutter: 0, // Spacing from edge
-                belowOrigin: false, // Displays dropdown below the button
-                alignment: 'left' // Displays dropdown with edge aligned to the left of button
+    {% block body %}{% endblock %}
+    {% block initiaticeAdmin_footer %}
+        {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+            {{ include('partials/footer.html.twig') }}
+        {% endif %}
+    {% endblock initiaticeAdmin_footer %}
+
+    {{ include("partials/removeModal.html.twig") }}
+    {% block javascripts %}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+        <script src="//cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('select').material_select();
+                $('.materialize-textarea').trigger('autoresize');
+                Materialize.updateTextFields();
+                CKEDITOR.replaceAll( 'wysiwyg' );
+                $('.modal').modal();
+                $('.dropdown-button').dropdown({
+                    inDuration: 300,
+                    outDuration: 225,
+                    constrain_width: false, // Does not change width of dropdown to that of the activator
+                    hover: true, // Activate on hover
+                    gutter: 0, // Spacing from edge
+                    belowOrigin: false, // Displays dropdown below the button
+                    alignment: 'left' // Displays dropdown with edge aligned to the left of button
+                });
             });
-        });
-    </script>
-{% endblock %}
+            function showModal(e, but, modal) {
+                e.preventDefault();
+                $('#' + modal).modal('open');
+                $('#' + modal + '_yes').click(function () {
+                    $('#' + modal).modal('close');
+                    document.location = but.href;
+                });
+            }
+        </script>
+    {% endblock %}
 </body>
-{% block initiaticeAdmin_footer %}
-    {% if is_granted("IS_AUTHENTICATED_FULLY") %}
-        {{ include('partials/footer.html.twig') }}
-    {% endif %}
-{% endblock initiaticeAdmin_footer %}
 </html>

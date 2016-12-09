@@ -4,17 +4,17 @@
     {{ form_start(form) }}
 
     <div class="input-field">{{ form_row(form.title) }}</div>
-    <div class="input-field">{{ form_row(form.type) }}</div>
-    {{ form_row(form.profile) }}
+    <div class="row">
+        <div class="input-field col s6">{{ form_row(form.type) }}</div>
+        <div class="col s6">{{ form_row(form.profile) }}</div>
+    </div>
     <div class="input-field">{{ form_row(form.abstract) }}</div>
     <div>{{ form_row(form.content) }}</div>
-    {{ form_row(form.save, {'attr': {'class': 'btn waves-effect waves-light'}} ) }}
+    <div class="input-field">{{ form_row(form.externalLink) }}</div>
 
+    {{ form_row(form.save, {'attr': {'class': 'btn waves-effect waves-light'}} ) }}
     {{ form_end(form) }}
 {% endblock %}
-{% block initiaticeAdmin_footer %}
-{% endblock %}
 {% block javascripts %}
-{{ parent() }}  
-<script> CKEDITOR.replace('form_content');</script>
+{{ parent() }}
 {% endblock %}

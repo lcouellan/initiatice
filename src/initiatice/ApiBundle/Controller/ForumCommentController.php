@@ -21,10 +21,10 @@ class ForumCommentController extends Controller
         $normalizers = array(new ObjectNormalizer());
         $this->serializer = new Serializer($normalizers, $encoders);
     }
+    private function getBd() { return $this->getDoctrine()->getManager(); }
     private function getJsonResponse($data) {
         $response = new JsonResponse();
-        $response->setData($data);
-        $response->headers->set('Content-Type', 'application/json');
+        $response->setData($data)->headers->set('Content-Type', 'application/json');
         return $response;
     }
 
@@ -54,9 +54,7 @@ class ForumCommentController extends Controller
             $comment->setQuestionId( substr($request->request->get('question'), 0, 15) );
             $comment->setDateAdd(new \DateTime());
             $comment->setDateUpdate(new \DateTime());
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($comment);
-            $em->flush();
+            $this->getBd()->persist($comment)->flush();
             return new Response('OK: COMMENT ADDED', 201);
         }
         return new Response('ERROR: COMMENT NOT ADDED', 400);
@@ -69,17 +67,13 @@ class ForumCommentController extends Controller
     public function listAction(Request $request)
     {
         $limit = $request->query->get('limit') == null ? null : $request->query->get('limit');
-
         $findBy = [];
-        if($request->query->get('question') != null) $findBy['questionId'] = $request->query->get('question');
-
-        $comments = $this->getDoctrine()
-            ->getRepository('initiaticeAdminBundle:ForumComment')
-            ->findBy($findBy, null, $limit, null);
+        if($request->query->get('question') != null)
+            $findBy['questionId'] = $request->query->get('question');
+        $comments = $this->getBd()->getRepository('initiaticeAdminBundle:ForumComment')->findBy($findBy, null, $limit, null);
         $data = [];
-        foreach($comments as $comment) {
+        foreach($comments as $comment)
             $data[] = $this->serializer->normalize($comment, null);
-        }
         return $this->getJsonResponse($data);
     }
 
@@ -89,9 +83,7 @@ class ForumCommentController extends Controller
      */
     public function showAction($id)
     {
-        $comment = $this->getDoctrine()
-            ->getRepository('initiaticeAdminBundle:ForumComment')
-            ->find($id);
+        $comment = $this->getBd()->getRepository('initiaticeAdminBundle:ForumComment')->find($id);
         return $this->getJsonResponse($this->serializer->normalize($comment, null));
     }
 }

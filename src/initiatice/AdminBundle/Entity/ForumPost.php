@@ -25,10 +25,10 @@ class ForumPost
     /**
      * @var string
      *
-     * @ORM\Column(name="pseudo", type="string", length=255)
+     * @ORM\Column(name="user_id", type="string", length=255)
      * @Assert\NotBlank()
      */
-    private $pseudo;
+    private $userId;
 
     /**
      * @var string
@@ -110,16 +110,16 @@ class ForumPost
     /**
      * @return string
      */
-    public function getPseudo()
+    public function getUserId()
     {
-        return $this->pseudo;
+        return $this->userId;
     }
 
     /**
-     * @param string $pseudo
+     * @param string $userId
      */
-    public function setPseudo($pseudo)
+    public function setUserId($userId)
     {
-        $this->pseudo = $pseudo;
+        $this->userId = $userId;
     }
 }

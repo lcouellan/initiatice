@@ -8,29 +8,34 @@
   </div>
     <table class="striped z-depth-1">
         <thead class =" blue darken-2 white-text">
-        <tr>
-            <th data-field="title">Titre</th>
-            <th data-field="type">Type</th>
-            <th data-field="abstract">Résumé</th>
-            <th data-field="date">Date</th>
-            <th data-field="place">Lieu</th>
-            <th data-field="dateAdd">Date d'ajout</th>
-            <th data-field="actions" class="table-actions-2">Actions &emsp; &emsp;</th>
-        </tr>
+            <tr>
+                <th data-field="title">Titre</th>
+                <th data-field="type">Type</th>
+                <th data-field="abstract">Résumé</th>
+                <th data-field="date">Date</th>
+                <th data-field="place">Lieu</th>
+                <th data-field="dateAdd">Date d'ajout</th>
+                <th data-field="actions" class="table-actions-2">Actions</th>
+            </tr>
         </thead>
 
         <tbody>
-        {% for item in events %}
+        {% for v in events %}
             <tr>
-                <td>{{ item.title|slice(0, 50) }}</td>
-                <td>{{ item.type }}</td>
-                <td>{{ item.abstract|slice(0, 50) }}</td>
-                <td>{{ item.dateStart|date("d/m/Y") }}</td>
-                <td>{{ item.place }}</td>
-                <td>{{ item.dateAdd|date("d/m/Y") }}</td>
+                <td>{{ v.title|slice(0, 50) }}</td>
+                <td>{{ v.type }}</td>
+                <td>{{ v.abstract|slice(0, 50) }}</td>
+                <td>{{ v.dateStart|date("d/m/Y") }}</td>
+                <td>{{ v.place }}</td>
+                <td>{{ v.dateAdd|date("d/m/Y") }}</td>
                 <td>
-                    <a class="btn-floating waves-effect waves-light z-depth-2 blue darken-1" href="{{ path('initiatice_admin_event_edit', {'id': item.id}) }}"><i class="material-icons left">mode_edit</i></a>
-                    <a class="btn-floating waves-effect waves-light z-depth-2 blue darken-1" href="{{ path('initiatice_admin_event_remove', {'id': item.id}) }}"><i class="material-icons left">delete</i></a>
+                    <a class="btn-floating waves-effect waves-light z-depth-2 blue darken-1"
+                       href="{{ path('initiatice_admin_event_edit', {'id': v.id}) }}">
+                        <i class="material-icons left">mode_edit</i></a>
+                    <a class="btn-floating waves-effect waves-light z-depth-2 blue darken-1"
+                       href="{{ path('initiatice_admin_event_remove', {'id': v.id}) }}"
+                       onclick="showModal(event, this, 'remove_modal'); return false;">
+                        <i class="material-icons left">delete</i></a>
                 </td>
             </tr>
         {% endfor %}
