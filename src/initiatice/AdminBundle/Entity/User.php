@@ -112,6 +112,25 @@ class User
         return $this->email;
     }
 
+    public function getMyInfos() {
+        return [
+            'firstname' => $this->getFirstname(),       'lastname' => $this->getLastname(),
+            'email' => $this->getEmail(),               'profile' => $this->getProfile(),
+            'description' => $this->getDescription(),   'enabled' => $this->isEnabled(),
+            'dateAdd' => $this->getDateAdd(),           'dateUpdate' => $this->getDateUpdate(),
+            'token' => $this->getToken()
+        ];
+    }
+
+    public function getOtherInfos() {
+        return [
+            'firstname' => $this->getFirstname(),       'lastname' => $this->getLastname(),
+            'email' => $this->getEmail(),               'profile' => $this->getProfile(),
+            'description' => $this->getDescription(),   'enabled' => $this->isEnabled(),
+            'dateAdd' => $this->getDateAdd(),           'dateUpdate' => $this->getDateUpdate()
+        ];
+    }
+
     /**
      * @return mixed
      */

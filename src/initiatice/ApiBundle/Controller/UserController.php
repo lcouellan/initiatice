@@ -67,7 +67,7 @@ class UserController extends Controller
             $user->setEnabled(true);
             $this->getBd()->persist($user);
             $this->getBd()->flush();
-            return $this->getJsonResponse(['msg' => 'OK: USER ADDED', 'http_code' => 201, 'token' => $user->getToken()]);
+            return $this->getJsonResponse(['msg' => 'OK: USER ADDED', 'http_code' => 201, 'user' => $user->getMyInfos()]);
         }
         return $this->getJsonResponse(['msg' => 'ERROR: SOME FIELD IS MISSING', 'http_code' => 400]);
     }
@@ -82,13 +82,7 @@ class UserController extends Controller
                 ->findBy(['email' => $request->request->get('email')], null, null, null)[0];
             $e = $this->getEncoderFactory()->getEncoder($user);
             if($e->isPasswordValid($user->getPassword(), $request->request->get('plainPassword'), $user->getSalt()))
-                return $this->getJsonResponse([
-                    'firstname' => $user->getFirstname(),       'lastname' => $user->getLastname(),
-                    'email' => $user->getEmail(),               'profile' => $user->getProfile(),
-                    'description' => $user->getDescription(),   'enabled' => $user->isEnabled(),
-                    'dateAdd' => $user->getDateAdd(),           'dateUpdate' => $user->getDateUpdate(),
-                    'token' => $user->getToken()
-                ]);
+                return $this->getJsonResponse($user->getMyInfos());
             else
                 return $this->getJsonResponse(['msg' => 'ERROR: PASSWORD NOT CORRECT', 'http_code' => 400]);
         } else
@@ -108,14 +102,8 @@ class UserController extends Controller
         $users = $this->getBd()->getRepository('initiaticeAdminBundle:User')
             ->findBy($findBy, null, $limit, null);
         $data = [];
-        foreach($users as $user) {
-            $data[] = [
-                'firstname' => $user->getFirstname(),       'lastname' => $user->getLastname(),
-                'email' => $user->getEmail(),               'profile' => $user->getProfile(),
-                'description' => $user->getDescription(),   'enabled' => $user->isEnabled(),
-                'dateAdd' => $user->getDateAdd(),           'dateUpdate' => $user->getDateUpdate()
-            ];
-        }
+        foreach($users as $user)
+            $data[] = $user->getOtherInfos();
 
         return $this->getJsonResponse($data);
     }
@@ -127,11 +115,6 @@ class UserController extends Controller
     public function showAction($id)
     {
         $user = $this->getBd()->getRepository('initiaticeAdminBundle:User')->find($id);
-        return $this->getJsonResponse([
-            'firstname' => $user->getFirstname(),       'lastname' => $user->getLastname(),
-            'email' => $user->getEmail(),               'profile' => $user->getProfile(),
-            'description' => $user->getDescription(),   'enabled' => $user->isEnabled(),
-            'dateAdd' => $user->getDateAdd(),           'dateUpdate' => $user->getDateUpdate()
-        ]);
+        return $this->getJsonResponse($user->getOtherInfos());
     }
 }

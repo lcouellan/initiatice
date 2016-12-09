@@ -48,7 +48,7 @@ class ForumCommentController extends Controller
          */
         if($isNotNull && $isNotEmpty) {
             $comment = new ForumComment();
-            $comment->setPseudo( substr($request->request->get('pseudo'), 0, 255) );
+            $comment->setUserId( substr($request->request->get('userId'), 0, 255) );
             $comment->setContent( substr($request->request->get('content'), 0, 999999) );
             $comment->setQuestionId( substr($request->request->get('question'), 0, 15) );
             $comment->setDateAdd(new \DateTime());
@@ -72,8 +72,12 @@ class ForumCommentController extends Controller
             $findBy['questionId'] = $request->query->get('question');
         $comments = $this->getBd()->getRepository('initiaticeAdminBundle:ForumComment')->findBy($findBy, null, $limit, null);
         $data = [];
-        foreach($comments as $comment)
-            $data[] = $this->serializer->normalize($comment, null);
+        foreach($comments as $comment) {
+            $user = $this->getBd()->getRepository('initiaticeAdminBundle:User')->find($comment->getUserId());
+            $c = $this->serializer->normalize($comment, null);
+            $c['user'] = $user->getOtherInfos();
+            $data[] = $c;
+        }
         return $this->getJsonResponse($data);
     }
 
@@ -84,6 +88,9 @@ class ForumCommentController extends Controller
     public function showAction($id)
     {
         $comment = $this->getBd()->getRepository('initiaticeAdminBundle:ForumComment')->find($id);
-        return $this->getJsonResponse($this->serializer->normalize($comment, null));
+        $user = $this->getBd()->getRepository('initiaticeAdminBundle:User')->find($comment->getUserId());
+        $c = $this->serializer->normalize($comment, null);
+        $c['user'] = $user->getOtherInfos();
+        return $this->getJsonResponse($c);
     }
 }

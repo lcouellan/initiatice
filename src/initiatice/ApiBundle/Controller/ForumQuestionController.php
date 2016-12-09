@@ -73,7 +73,10 @@ class ForumQuestionController extends Controller
             ->findBy([], null, $limit, null);
         $data = [];
         foreach($questions as $question) {
-            $data[] = $this->serializer->normalize($question, null);
+            $user = $this->getBd()->getRepository('initiaticeAdminBundle:User')->find($question->getUserId());
+            $q = $this->serializer->normalize($question, null);
+            $q['user'] = $user->getOtherInfos();
+            $data[] = $q;
         }
         return $this->getJsonResponse($data);
     }
@@ -87,6 +90,9 @@ class ForumQuestionController extends Controller
         $question = $this->getDoctrine()
             ->getRepository('initiaticeAdminBundle:ForumQuestion')
             ->find($id);
-        return $this->getJsonResponse($this->serializer->normalize($question, null));
+        $user = $this->getBd()->getRepository('initiaticeAdminBundle:User')->find($question->getUserId());
+        $q = $this->serializer->normalize($question, null);
+        $q['user'] = $user->getOtherInfos();
+        return $this->getJsonResponse($q);
     }
 }
