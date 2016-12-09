@@ -29,7 +29,7 @@ class LoadEventData implements FixtureInterface
         $e->setType("JIPN");
         $e->setProfile(2);
         $e->setAbstract("Les JIPN Les Journées d'Innovations Pédagogiques Normandes sont organisées annuellement en collaboration avec la Région Normandie (Réseau Communotic).");
-        $e->setContent("À l’ère du numérique, les utilisateurs doivent faire face à de nouvelles problématiques : l’évolution des outils numériques, la massification des enseignements, le profil des étudiants, le changement des attitudes et des mentalités. Ils doivent s'adapter à un nouveau public (Digital Natives) dont le rapport au savoir, à l'apprentissage a évolué. Comment réinventer ses pratiques pédagogiques ? Comment innover en pédagogie ?
+        $e->setContent("À l’ère du numérique, les enseignants doivent faire face à de nouvelles problématiques : l’évolution des outils numériques, la massification des enseignements, le profil des étudiants, le changement des attitudes et des mentalités. Ils doivent s'adapter à un nouveau public (Digital Natives) dont le rapport au savoir, à l'apprentissage a évolué. Comment réinventer ses pratiques pédagogiques ? Comment innover en pédagogie ?
 
 Ces 2 jours JIPN 2016 ont été l’occasion d'échanger sur les outils pédagogiques, les nouvelles formes d'apprentissage avec un focus sur l'évaluation mais également d’imaginer les pratiques pédagogiques innovantes.
 
