@@ -27,6 +27,13 @@ class NewsController extends Controller
             $news = $form->getData();
             $news->setDateAdd(new \DateTime());
             $news->setDateUpdate(new \DateTime());
+            if ( $news->getContentImage() != null ) {
+				$file = $news->getContentImage();
+				$imgName = md5(uniqid()).'.'.$file->guessExtension();
+				$imgDir = $this->container->getParameter('kernel.root_dir').'/../web/images/content';
+				$file->move($imgDir, $imgName);
+				$news->setContentImage($imgName);
+			}
             $this->getBd()->persist($news);
             $this->getBd()->flush();
             return $this->redirectToRoute('initiatice_admin_news_index');

@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 
 class NewsType extends AbstractType
@@ -31,8 +32,10 @@ class NewsType extends AbstractType
                 'choices' => $choices, 'label' => 'Profile'
             ])
             ->add('abstract', TextType::class, ['label' => 'Résumé'])
-            ->add('content', TextareaType::class, ['label' => 'Contenu', 'attr' => ['class' => 'wysiwyg']])
             ->add('externalLink', TextType::class, ['label' => 'Lien externe'])
+            ->add('contentImage', FileType::class, array('label' => 'Image'))
+            ->add('content', TextareaType::class, ['label' => 'Contenu', 'attr' => ['class' => 'wysiwyg']])
+            ->add('contentImage', FileType::class, array('label' => 'Image'))
             ->add('save', SubmitType::class, ['label' => 'Enregistrer'])
         ;
     }
