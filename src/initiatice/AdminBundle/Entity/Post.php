@@ -33,7 +33,7 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(name="abstract", type="string", length=500, nullable=true)
+     * @ORM\Column(name="abstract", type="string", length=500)
      */
     private $abstract;
 

@@ -14,6 +14,7 @@ class LoadEventData implements FixtureInterface
         $e->setTitle('Le champ des possibles avec Moodle');
         $e->setType("Café'TICE");
         $e->setProfile(1);
+        $e->setAbstract("Premier Cafe'TICE de l'année");
         $e->setPlace('Belvedère, bâtiment D · campus 1');
         $e->setLatitude(49.181318);
         $e->setLongitude(-0.373289);
