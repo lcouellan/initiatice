@@ -47,7 +47,7 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=255)
+     * @ORM\Column(name="type", type="string", length=255, nullable=true)
      * @Assert\NotBlank()
      */
     private $type;
@@ -68,11 +68,12 @@ class Post
      */
     private $externalLink;
 
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="content_image", type="string", length=255)
+	/**
+     * @Assert\Image(
+     *     mimeTypes = {"image/jpeg", "image/png","image/jpg", "image/gif"},
+     *     mimeTypesMessage = "Seuls les fichiers images sont autorisés"
+     * )
+     * @ORM\Column(name="content_image", type="string", nullable=true)
      */
     private $contentImage;
 

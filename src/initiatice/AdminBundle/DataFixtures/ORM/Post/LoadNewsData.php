@@ -32,6 +32,17 @@ class LoadNewsData implements FixtureInterface
         $n->setDateAdd(new \DateTime());
         $n->setDateUpdate(new \DateTime());
         $manager->persist($n);
+        
+        $n = new News();
+        $n->setTitle("Actualité créée depuis le BackOffice");
+        $n->setType("Autre");
+        $n->setProfile(3);
+        $n->setExternalLink("https://www.canal-u.tv/video/centre_d_enseignement_multimedia_universitaire_c_e_m_u/08_learning_pitch_pitchez_votre_outil_pedagogique_en_5_min_jipn_2016.21253");
+        $n->setAbstract("Test d'une actualité");
+        $n->setContentImage("96fc822aed27beffafbf1fd6c6e37429.jpeg");
+        $n->setDateAdd(new \DateTime());
+        $n->setDateUpdate(new \DateTime());
+        $manager->persist($n);
 
         $manager->flush();
     }
