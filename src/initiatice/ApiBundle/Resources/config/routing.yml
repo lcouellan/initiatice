@@ -69,3 +69,6 @@ initiatice_api_user_show:
 initiatice_api_user_add:
     path:     /api/user/add
     defaults: { _controller: initiaticeApiBundle:User:add }
+initiatice_api_user_auth:
+    path:     /api/user/auth
+    defaults: { _controller: initiaticeApiBundle:User:auth }

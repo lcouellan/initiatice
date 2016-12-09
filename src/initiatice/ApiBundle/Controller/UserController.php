@@ -5,7 +5,6 @@ namespace initiatice\ApiBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use initiatice\AdminBundle\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 use Symfony\Component\Serializer\Serializer;
@@ -49,6 +48,11 @@ class UserController extends Controller
          * Ajout
          */
         if($isNotNull && $isNotEmpty) {
+
+            $user = $this->getBd()->getRepository('initiaticeAdminBundle:User')
+                ->findBy(['email' => $request->request->get('email')], null, null, null)[0];
+            if($user) return $this->getJsonResponse(['msg' => 'ERROR: EMAIL ALREADY REGISTERED', 'http_code' => 400]);
+
             $user = new User();
             $e = $this->getEncoderFactory()->getEncoder($user);
             $user->setFirstname( substr($request->request->get('firstname'), 0, 255) );
@@ -65,7 +69,7 @@ class UserController extends Controller
             $this->getBd()->flush();
             return $this->getJsonResponse(['msg' => 'OK: USER ADDED', 'http_code' => 201, 'token' => $user->getToken()]);
         }
-        return new Response('ERROR: USER NOT ADDED', 400);
+        return $this->getJsonResponse(['msg' => 'ERROR: SOME FIELD IS MISSING', 'http_code' => 400]);
     }
 
     /*
@@ -73,22 +77,22 @@ class UserController extends Controller
      */
     public function authAction(Request $request)
     {
-        if($request->query->get('email') == null && $request->query->get('plainPassword') == null)
-            return new Response('ERROR: USER NOT RETURNED', 400);
-
-        $user = $this->getBd()->getRepository('initiaticeAdminBundle:User')
-            ->findBy(['email' => $request->query->get('email')], null, null, null);
-        $e = $this->getEncoderFactory()->getEncoder($user);
-        if($request->query->get('plainPassword') == $user->getPlainPassword())
-            return $this->getJsonResponse([
-                'firstname' => $user->getFirstname(),       'lastname' => $user->getLastname(),
-                'email' => $user->getEmail(),               'profile' => $user->getProfile(),
-                'description' => $user->getDescription(),   'enabled' => $user->isEnabled(),
-                'dateAdd' => $user->getDateAdd(),           'dateUpdate' => $user->getDateUpdate(),
-                'token' => $user->getToken()
-            ]);
-        else
-            return new Response('ERROR: PASSWORD NOT CORRECT', 400);
+        if($request->request->get('email') && $request->request->get('plainPassword')) {
+            $user = $this->getBd()->getRepository('initiaticeAdminBundle:User')
+                ->findBy(['email' => $request->request->get('email')], null, null, null)[0];
+            $e = $this->getEncoderFactory()->getEncoder($user);
+            if($e->isPasswordValid($user->getPassword(), $request->request->get('plainPassword'), $user->getSalt()))
+                return $this->getJsonResponse([
+                    'firstname' => $user->getFirstname(),       'lastname' => $user->getLastname(),
+                    'email' => $user->getEmail(),               'profile' => $user->getProfile(),
+                    'description' => $user->getDescription(),   'enabled' => $user->isEnabled(),
+                    'dateAdd' => $user->getDateAdd(),           'dateUpdate' => $user->getDateUpdate(),
+                    'token' => $user->getToken()
+                ]);
+            else
+                return $this->getJsonResponse(['msg' => 'ERROR: PASSWORD NOT CORRECT', 'http_code' => 400]);
+        } else
+            return $this->getJsonResponse(['msg' => 'ERROR: email OR plainPassword IS MISSING', 'http_code' => 400]);
     }
 
     /**

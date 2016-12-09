@@ -5,7 +5,6 @@ namespace initiatice\ApiBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use initiatice\AdminBundle\Entity\ForumComment;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 use Symfony\Component\Serializer\Serializer;
@@ -56,9 +55,9 @@ class ForumCommentController extends Controller
             $comment->setDateUpdate(new \DateTime());
             $this->getBd()->persist($comment);
             $this->getBd()->flush();
-            return new Response('OK: COMMENT ADDED', 201);
+            return $this->getJsonResponse(['msg' => 'OK: COMMENT ADDED', 'http_code' => 201]);
         }
-        return new Response('ERROR: COMMENT NOT ADDED', 400);
+        return $this->getJsonResponse(['msg' => 'ERROR: SOME FIELD IS MISSING', 'http_code' => 400]);
     }
 
     /**
