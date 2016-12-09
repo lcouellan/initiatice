@@ -3,7 +3,7 @@
 namespace initiatice\ApiBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use initiatice\ApiBundle\Entity\Event;
+use initiatice\AdminBundle\Entity\Event;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 

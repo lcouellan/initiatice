@@ -98,6 +98,13 @@ class User
      */
     private $dateUpdate;
 
+    /**
+     * @var \string
+     *
+     * @ORM\Column(name="token", type="string", length=48)
+     */
+    private $token;
+
 
     public function getSalt()
     {
@@ -271,5 +278,21 @@ class User
     public function setDescription($description)
     {
         $this->description = $description;
+    }
+
+    /**
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
+     * @param string $token
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
     }
 }

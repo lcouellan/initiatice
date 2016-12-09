@@ -34,6 +34,7 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $u->setDescription('Je suis Laurence passionnée d\'informatique et experte Moodle, contactez-moi si besoin');
         $u->setProfile(1);
         $u->setEnabled(true);
+        $u->setToken(bin2hex(random_bytes(48)));
         $u->setDateAdd(new \DateTime());
         $u->setDateUpdate(new \DateTime());
         $manager->persist($u);
@@ -47,6 +48,7 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $u->setEmail("gwendoline@mail.com");
         $u->setProfile(1);
         $u->setEnabled(true);
+        $u->setToken(bin2hex(random_bytes(48)));
         $u->setDateAdd(new \DateTime());
         $u->setDateUpdate(new \DateTime());
         $manager->persist($u);
@@ -60,6 +62,7 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $u->setEmail("stephanie@mail.com");
         $u->setProfile(1);
         $u->setEnabled(true);
+        $u->setToken(bin2hex(random_bytes(48)));
         $u->setDateAdd(new \DateTime());
         $u->setDateUpdate(new \DateTime());
         $manager->persist($u);
@@ -73,6 +76,7 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $u->setEmail("lucien@mail.com");
         $u->setProfile(1);
         $u->setEnabled(true);
+        $u->setToken(bin2hex(random_bytes(48)));
         $u->setDateAdd(new \DateTime());
         $u->setDateUpdate(new \DateTime());
         $manager->persist($u);

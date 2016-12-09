@@ -5,7 +5,6 @@ namespace initiatice\ApiBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use initiatice\AdminBundle\Entity\ForumQuestion;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 use Symfony\Component\Serializer\Serializer;
@@ -56,9 +55,9 @@ class ForumQuestionController extends Controller
             $question->setDateUpdate(new \DateTime());
             $this->getBd()->persist($question);
             $this->getBd()->flush();
-            return new Response('OK: QUESTION ADDED', 201);
+            return $this->getJsonResponse(['msg' => 'OK: QUESTION ADDED', 'http_code' => 201]);
         }
-        return new Response('ERROR: QUESTION NOT ADDED', 400);
+        return $this->getJsonResponse(['msg' => 'OK: SOME FIELD IS MISSING', 'http_code' => 400]);
     }
 
     /**
