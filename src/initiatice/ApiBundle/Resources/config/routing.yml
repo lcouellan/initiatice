@@ -1,7 +1,6 @@
 initiatice_api_profile_list:
     path:     /api/profile/list
     defaults: { _controller: initiaticeApiBundle:Profile:list }
-
 initiatice_api_profile_show:
     path:     /api/profile/show/{id}
     defaults: { _controller: initiaticeApiBundle:Profile:show }
@@ -13,7 +12,6 @@ initiatice_api_profile_show:
 initiatice_api_news_list:
     path:     /api/news/list
     defaults: { _controller: initiaticeApiBundle:News:list }
-
 initiatice_api_news_show:
     path:     /api/news/show/{id}
     defaults: { _controller: initiaticeApiBundle:News:show }
@@ -25,7 +23,6 @@ initiatice_api_news_show:
 initiatice_api_event_list:
     path:     /api/event/list
     defaults: { _controller: initiaticeApiBundle:Event:list }
-
 initiatice_api_event_show:
     path:     /api/event/show/{id}
     defaults: { _controller: initiaticeApiBundle:Event:show }
@@ -37,7 +34,6 @@ initiatice_api_event_show:
 initiatice_api_forum_comment_list:
     path:     /api/forum/comment/list
     defaults: { _controller: initiaticeApiBundle:ForumComment:list }
-
 initiatice_api_forum_comment_show:
     path:     /api/forum/comment/show/{id}
     defaults: { _controller: initiaticeApiBundle:ForumComment:show }
@@ -52,7 +48,6 @@ initiatice_api_forum_comment_add:
 initiatice_api_forum_question_list:
     path:     /api/forum/question/list
     defaults: { _controller: initiaticeApiBundle:ForumQuestion:list }
-
 initiatice_api_forum_question_show:
     path:     /api/forum/question/show/{id}
     defaults: { _controller: initiaticeApiBundle:ForumQuestion:show }
@@ -61,3 +56,16 @@ initiatice_api_forum_question_show:
 initiatice_api_forum_question_add:
     path:     /api/forum/question/add
     defaults: { _controller: initiaticeApiBundle:ForumQuestion:add }
+
+
+initiatice_api_user_list:
+    path:     /api/user/list
+    defaults: { _controller: initiaticeApiBundle:User:list }
+initiatice_api_user_show:
+    path:     /api/user/show/{id}
+    defaults: { _controller: initiaticeApiBundle:User:show }
+    requirements:
+            id: \d+
+initiatice_api_user_add:
+    path:     /api/user/add
+    defaults: { _controller: initiaticeApiBundle:User:add }

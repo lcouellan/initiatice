@@ -3,7 +3,7 @@
 namespace initiatice\ApiBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use initiatice\ApiBundle\Entity\News;
+use initiatice\AdminBundle\Entity\News;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 

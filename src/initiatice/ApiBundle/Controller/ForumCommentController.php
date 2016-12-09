@@ -54,7 +54,8 @@ class ForumCommentController extends Controller
             $comment->setQuestionId( substr($request->request->get('question'), 0, 15) );
             $comment->setDateAdd(new \DateTime());
             $comment->setDateUpdate(new \DateTime());
-            $this->getBd()->persist($comment)->flush();
+            $this->getBd()->persist($comment);
+            $this->getBd()->flush();
             return new Response('OK: COMMENT ADDED', 201);
         }
         return new Response('ERROR: COMMENT NOT ADDED', 400);

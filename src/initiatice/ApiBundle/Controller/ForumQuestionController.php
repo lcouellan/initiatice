@@ -54,7 +54,8 @@ class ForumQuestionController extends Controller
             $question->setTitle( substr($request->request->get('title'), 0, 255) );
             $question->setDateAdd(new \DateTime());
             $question->setDateUpdate(new \DateTime());
-            $this->getBd()->persist($question)->flush();
+            $this->getBd()->persist($question);
+            $this->getBd()->flush();
             return new Response('OK: QUESTION ADDED', 201);
         }
         return new Response('ERROR: QUESTION NOT ADDED', 400);
