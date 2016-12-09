@@ -14,8 +14,13 @@
     <div class="input-field">{{ form_row(form.externalLink) }}</div>
 
     {{ form_row(form.save, {'attr': {'class': 'btn waves-effect waves-light'}} ) }}
-    {{ form_end(form) }}
+    {{ form_end(form) }}   
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
+    $(document).ready(function() {
+        $('.js-datepicker').datepicker({
+            format: 'yyyy-mm-dd'
+        });
+    });
 {% endblock %}

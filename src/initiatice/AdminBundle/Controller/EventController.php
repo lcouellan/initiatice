@@ -21,9 +21,18 @@ class EventController extends Controller
     public function addAction(Request $request)
     {
         $event = new Event();
+        $event->setLatitude(-1);
+        $event->setLongitude(-1);
+        $event->setProfile(1);
+        $event->setDateAdd(new \DateTime());
+        
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
+        var_dump($form->isValid());
+        var_dump($form->getData());
+        
         if ($form->isSubmitted() && $form->isValid()) {
+			
             $event = $form->getData();
             $event->setDateAdd(new \DateTime());
             $event->setDateUpdate(new \DateTime());

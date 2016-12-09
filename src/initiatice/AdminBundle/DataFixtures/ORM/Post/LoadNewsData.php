@@ -19,6 +19,7 @@ class LoadNewsData implements FixtureInterface
         $n->setContent("Les inscriptions des partenaires / communotic à nos ateliers de formations se font maintenant directement sur le questionnaire en ligne : https://limesurvey.unicaen.fr/index.php/376671/lang-fr");
         $n->setContentImage("http://cemu.unicaen.fr/servlet/com.univ.collaboratif.utils.LectureFichiergw?ID_FICHIER=1339426835480&ID_FICHE=43024");
         $n->setDateAdd(new \DateTime());
+        $n->setDateUpdate(new \DateTime());
         $manager->persist($n);
 
         $n = new News();
@@ -29,6 +30,7 @@ class LoadNewsData implements FixtureInterface
         $n->setAbstract("Nouvel atelier disponible sur moodle");
         $n->setContentImage("http://cemu.unicaen.fr/servlet/com.univ.collaboratif.utils.LectureFichiergw?ID_FICHIER=1339426835468&ID_FICHE=44151");
         $n->setDateAdd(new \DateTime());
+        $n->setDateUpdate(new \DateTime());
         $manager->persist($n);
 
         $manager->flush();

@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-use Symfony\Component\Form\Extension\Core\Type\TimeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -21,9 +21,10 @@ class EventType extends AbstractType
             ->add('type', TextType::class, ['label' => 'Type'])
             ->add('abstract', TextType::class, ['label' => 'Résumé'])
             ->add('place', TextType::class, ['label' => 'Lieu de l\'événement'])
-            ->add('dateStart', TimeType::class, [
-                'input'  => 'timestamp',
-                'widget' => 'choice'
+            ->add('dateStart', DateType::class, [
+                'widget' => 'single_text',
+				// add a class that can be selected in JavaScript
+                'label' => 'Date de l\'événement'
             ])
             ->add('content', TextareaType::class, ['label' => 'Contenu', 'attr' => ['class' => 'wysiwyg']])
             ->add('externalLink', TextType::class, ['label' => 'Lien externe'])
