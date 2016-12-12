@@ -4,3 +4,7 @@
 nav .dropdown-content {
     margin-top: 64px!important;
 }
+
+.sf-toolbar {
+	display:none;
+}
