@@ -319,7 +319,7 @@ class User
      */
     public function setToken($token)
     {
-        $this->token = $token;
+        $this->token = substr($token, 0, 96);
     }
 
     /**
