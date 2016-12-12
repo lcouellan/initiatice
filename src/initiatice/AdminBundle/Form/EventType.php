@@ -2,12 +2,14 @@
 
 namespace initiatice\AdminBundle\Form;
 
+use Doctrine\DBAL\Types\FloatType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
@@ -21,6 +23,8 @@ class EventType extends AbstractType
             ->add('type', TextType::class, ['label' => 'Type'])
             ->add('abstract', TextType::class, ['label' => 'Résumé'])
             ->add('place', TextType::class, ['label' => 'Lieu de l\'événement'])
+            ->add('longitude', NumberType::class, ['label' => 'Longitude', 'required' => false ])
+            ->add('latitude', NumberType::class, ['label' => 'Latitude', 'required' => false ])
             ->add('dateStart', DateType::class, [
                 'widget' => 'single_text',
 				// add a class that can be selected in JavaScript
