@@ -5,6 +5,7 @@ namespace initiatice\ApiBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use initiatice\AdminBundle\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 use Symfony\Component\Serializer\Serializer;
@@ -29,7 +30,38 @@ class UserController extends Controller
     }
 
     /*
+     * Ajouter un token google à un utilisateur
+     * @return JsonResponse
+     */
+    public function googleAddAction(Request $request)
+    {
+        /*
+         * Validation
+         */
+        $isNotNull = $request->request->get('email') && $request->request->get('token')
+            && $request->request->get('google');
+        $isNotEmpty = sizeof($request->request->get('email')) > 0 && sizeof($request->request->get('token')) > 0
+            && sizeof($request->request->get('google')) > 0;
+
+        /*
+         * Ajout token google
+         */
+        if($isNotNull && $isNotEmpty) {
+            $user = $this->getBd()->getRepository('initiaticeAdminBundle:User')->findBy([
+                'token' => $request->request->get('token'),
+                'email' => $request->request->get('email')
+            ], null, null, null)[0];
+            $user->setTokenGoogle($request->request->get('google'));
+            $this->getBd()->persist($user);
+            $this->getBd()->flush();
+            return $this->getJsonResponse(['msg' => 'USER GOOGLE TOKEN ADDED'])->setStatusCode(201);
+        }
+        return $this->getJsonResponse(['msg' => 'SOME FIELD IS MISSING'])->setStatusCode(400);
+    }
+
+    /*
      * Ajouter un utilisateur
+     * @return JsonResponse
      */
     public function addAction(Request $request)
     {
@@ -51,7 +83,7 @@ class UserController extends Controller
 
             $user = $this->getBd()->getRepository('initiaticeAdminBundle:User')
                 ->findBy(['email' => $request->request->get('email')], null, null, null)[0];
-            if($user) return $this->getJsonResponse(['msg' => 'ERROR: EMAIL ALREADY REGISTERED', 'http_code' => 400]);
+            if($user) return $this->getJsonResponse(['msg' => 'EMAIL ALREADY REGISTERED'])->setStatusCode(400);
 
             $user = new User();
             $e = $this->getEncoderFactory()->getEncoder($user);
@@ -60,6 +92,7 @@ class UserController extends Controller
             $user->setEmail( substr($request->request->get('email'), 0, 255) );
             $user->setProfile( substr($request->request->get('profile'), 0, 2) );
             $user->setPlainPassword( substr($request->request->get('plainPassword'), 0, 4096) );
+            $user->setSalt(uniqid(mt_rand(), true));
             $user->setPassword($e->encodePassword($user->getPlainPassword(), $user->getSalt()));
             $user->setToken(bin2hex(random_bytes(48)));
             $user->setDateAdd(new \DateTime());
@@ -67,13 +100,14 @@ class UserController extends Controller
             $user->setEnabled(true);
             $this->getBd()->persist($user);
             $this->getBd()->flush();
-            return $this->getJsonResponse(['msg' => 'OK: USER ADDED', 'http_code' => 201, 'user' => $user->getMyInfos()]);
+            return $this->getJsonResponse(['msg' => 'USER ADDED', 'user' => $user->getMyInfos()])->setStatusCode(201);
         }
-        return $this->getJsonResponse(['msg' => 'ERROR: SOME FIELD IS MISSING', 'http_code' => 400]);
+        return $this->getJsonResponse(['msg' => 'SOME FIELD IS MISSING'])->setStatusCode(400);
     }
 
     /*
      * Récupérer token utilisateur pour connexion
+     * @return JsonResponse
      */
     public function authAction(Request $request)
     {
@@ -82,11 +116,11 @@ class UserController extends Controller
                 ->findBy(['email' => $request->request->get('email')], null, null, null)[0];
             $e = $this->getEncoderFactory()->getEncoder($user);
             if($e->isPasswordValid($user->getPassword(), $request->request->get('plainPassword'), $user->getSalt()))
-                return $this->getJsonResponse($user->getMyInfos());
+                return $this->getJsonResponse(['msg' => 'AUTH SUCCESS', 'user' => $user->getMyInfos()])->setStatusCode(200);
             else
-                return $this->getJsonResponse(['msg' => 'ERROR: PASSWORD NOT CORRECT', 'http_code' => 400]);
+                return $this->getJsonResponse(['msg' => 'PASSWORD NOT CORRECT'])->setStatusCode(400);
         } else
-            return $this->getJsonResponse(['msg' => 'ERROR: email OR plainPassword IS MISSING', 'http_code' => 400]);
+            return $this->getJsonResponse(['msg' => '"email" OR "plainPassword" IS MISSING'])->setStatusCode(400);
     }
 
     /**

@@ -55,9 +55,9 @@ class ForumQuestionController extends Controller
             $question->setDateUpdate(new \DateTime());
             $this->getBd()->persist($question);
             $this->getBd()->flush();
-            return $this->getJsonResponse(['msg' => 'OK: QUESTION ADDED', 'http_code' => 201]);
+            return $this->getJsonResponse(['msg' => 'QUESTION ADDED'])->setStatusCode(201);
         }
-        return $this->getJsonResponse(['msg' => 'OK: SOME FIELD IS MISSING', 'http_code' => 400]);
+        return $this->getJsonResponse(['msg' => 'SOME FIELD IS MISSING'])->setStatusCode(400);
     }
 
     /**

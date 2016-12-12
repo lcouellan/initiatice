@@ -55,9 +55,9 @@ class ForumCommentController extends Controller
             $comment->setDateUpdate(new \DateTime());
             $this->getBd()->persist($comment);
             $this->getBd()->flush();
-            return $this->getJsonResponse(['msg' => 'OK: COMMENT ADDED', 'http_code' => 201]);
+            return $this->getJsonResponse(['msg' => 'COMMENT ADDED'])->setStatusCode(201);
         }
-        return $this->getJsonResponse(['msg' => 'ERROR: SOME FIELD IS MISSING', 'http_code' => 400]);
+        return $this->getJsonResponse(['msg' => 'SOME FIELD IS MISSING'])->setStatusCode(400);
     }
 
     /**

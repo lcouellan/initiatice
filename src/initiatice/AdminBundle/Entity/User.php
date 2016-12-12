@@ -101,16 +101,23 @@ class User
     /**
      * @var \string
      *
-     * @ORM\Column(name="token", type="string", length=48)
+     * @ORM\Column(name="token", type="string", length=96)
      */
     private $token;
 
+    /**
+     * @var \string
+     *
+     * @ORM\Column(name="token_google", type="string", length=512, nullable=true)
+     */
+    private $tokenGoogle;
 
-    public function getSalt()
-    {
-        //TODO: Générer un vrai grain de sel
-        return $this->email;
-    }
+    /**
+     * @var \string
+     *
+     * @ORM\Column(name="salt", type="string", length=96)
+     */
+    private $salt;
 
     public function getMyInfos() {
         return [
@@ -313,5 +320,37 @@ class User
     public function setToken($token)
     {
         $this->token = $token;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTokenGoogle()
+    {
+        return $this->tokenGoogle;
+    }
+
+    /**
+     * @param string $tokenGoogle
+     */
+    public function setTokenGoogle($tokenGoogle)
+    {
+        $this->tokenGoogle = $tokenGoogle;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSalt()
+    {
+        return $this->salt;
+    }
+
+    /**
+     * @param string $salt
+     */
+    public function setSalt($salt)
+    {
+        $this->salt = $salt;
     }
 }
