@@ -51,7 +51,7 @@ class EventController extends Controller
     public function showAction($id)
     {
         $event = $this->getBd()->getRepository('initiaticeAdminBundle:Event')->find($id);
-        if(!$event) return $this->getJsonResponse(['msg' => 'SOME FIELD IS NOT VALID'])->setStatusCode(400);
+        if(!$event) return $this->getJsonResponse(['msg' => 'EVENT ID IS NOT VALID'])->setStatusCode(400);
         return $this->getJsonResponse($this->serializer->normalize($event, null));
     }
 }

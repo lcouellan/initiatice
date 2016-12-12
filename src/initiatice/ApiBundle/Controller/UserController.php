@@ -112,16 +112,27 @@ class UserController extends Controller
      */
     public function authAction(Request $request)
     {
-        if($request->request->get('email') && $request->request->get('plainPassword')) {
+        /*
+         * Validation
+         */
+        $isNotNull = $request->request->get('email')
+            && $request->request->get('plainPassword');
+        $isNotEmpty = sizeof($request->request->get('email')) > 0
+            && sizeof($request->request->get('plainPassword')) > 0;;
+
+        /*
+        * Auth
+        */
+        if($isNotNull && $isNotEmpty) {
             $user = $this->getBd()->getRepository('initiaticeAdminBundle:User')
                 ->findBy(['email' => $request->request->get('email')], null, null, null)[0];
+            if(!$user) return $this->getJsonResponse(['msg' => 'EMAIL IS NOT VALID'])->setStatusCode(400);
             $e = $this->getEncoderFactory()->getEncoder($user);
             if($e->isPasswordValid($user->getPassword(), $request->request->get('plainPassword'), $user->getSalt()))
                 return $this->getJsonResponse(['msg' => 'AUTH SUCCESS', 'user' => $user->getMyInfos()])->setStatusCode(200);
-            else
-                return $this->getJsonResponse(['msg' => 'PASSWORD NOT CORRECT'])->setStatusCode(400);
-        } else
-            return $this->getJsonResponse(['msg' => '"email" OR "plainPassword" IS MISSING'])->setStatusCode(400);
+            return $this->getJsonResponse(['msg' => 'PASSWORD NOT CORRECT'])->setStatusCode(400);
+        }
+        return $this->getJsonResponse(['msg' => '"email" OR "plainPassword" IS MISSING'])->setStatusCode(400);
     }
 
     /**
@@ -150,6 +161,7 @@ class UserController extends Controller
     public function showAction($id)
     {
         $user = $this->getBd()->getRepository('initiaticeAdminBundle:User')->find($id);
+        if(!$user) return $this->getJsonResponse(['msg' => 'USER ID IS NOT VALID'])->setStatusCode(400);
         return $this->getJsonResponse($user->getOtherInfos());
     }
 }
