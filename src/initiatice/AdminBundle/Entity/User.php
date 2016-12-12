@@ -125,7 +125,7 @@ class User
             'email' => $this->getEmail(),               'profile' => $this->getProfile(),
             'description' => $this->getDescription(),   'enabled' => $this->isEnabled(),
             'dateAdd' => $this->getDateAdd(),           'dateUpdate' => $this->getDateUpdate(),
-            'token' => $this->getToken()
+            'token' => $this->getToken(), 'id' => $this->getId()
         ];
     }
 
@@ -134,7 +134,8 @@ class User
             'firstname' => $this->getFirstname(),       'lastname' => $this->getLastname(),
             'email' => $this->getEmail(),               'profile' => $this->getProfile(),
             'description' => $this->getDescription(),   'enabled' => $this->isEnabled(),
-            'dateAdd' => $this->getDateAdd(),           'dateUpdate' => $this->getDateUpdate()
+            'dateAdd' => $this->getDateAdd(),           'dateUpdate' => $this->getDateUpdate(),
+            'id' => $this->getId()
         ];
     }
 

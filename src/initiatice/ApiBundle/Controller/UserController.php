@@ -61,6 +61,42 @@ class UserController extends Controller
     }
 
     /*
+    * Modifier un utilisateur
+    * @return JsonResponse
+    */
+    public function editAction(Request $request)
+    {
+        /*
+         * Validation
+         */
+        $isNotNull = $request->request->get('token') && $request->request->get('email')
+                    && $request->request->get('key');
+        $isNotEmpty = sizeof($request->request->get('token')) > 0 && sizeof($request->request->get('email')) > 0
+                    && sizeof($request->request->get('key')) > 0;
+        $switch = [
+            'firstname' => function($u, $req)   { $u->setFirstname( substr($req->request->get('value'), 0, 255) ); },
+            'lastname' => function($u, $req)    { $u->setLastname( substr($req->request->get('value'), 0, 255) ); },
+            'description' => function($u, $req) { $u->setDescription( substr($req->request->get('value'), 0, 5000) ); },
+            'profile' => function($u, $req)     { $u->setProfile( $req->request->get('value') ); }
+        ];
+        if(!array_key_exists($request->request->get('key'), $switch))
+            return $this->getJsonResponse(['msg' => 'KEY IS NOT VALID'])->setStatusCode(400);
+
+        // Modification en DB
+        if($isNotNull && $isNotEmpty) {
+            $user = $this->getBd()->getRepository('initiaticeAdminBundle:User')
+                ->findBy(['email' => $request->request->get('email'), 'token' => $request->request->get('token')], null, null, null)[0];
+            if(!$user) return $this->getJsonResponse(['msg' => 'EMAIL OR TOKEN IS NOT VALID'])->setStatusCode(400);
+            $switch[$request->request->get('key')]($user, $request);
+            $user->setDateUpdate(new \DateTime());
+            $this->getBd()->persist($user);
+            $this->getBd()->flush();
+            return $this->getJsonResponse(['msg' => 'USER EDITED', 'user' => $user->getMyInfos()])->setStatusCode(201);
+        }
+        return $this->getJsonResponse(['msg' => 'SOME FIELD IS MISSING'])->setStatusCode(400);
+    }
+
+    /*
      * Ajouter un utilisateur
      * @return JsonResponse
      */
@@ -118,7 +154,7 @@ class UserController extends Controller
         $isNotNull = $request->request->get('email')
             && $request->request->get('plainPassword');
         $isNotEmpty = sizeof($request->request->get('email')) > 0
-            && sizeof($request->request->get('plainPassword')) > 0;
+            && sizeof($request->request->get('plainPassword')) > 0;;
 
         /*
         * Auth
