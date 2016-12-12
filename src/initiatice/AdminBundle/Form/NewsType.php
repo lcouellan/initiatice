@@ -33,9 +33,8 @@ class NewsType extends AbstractType
             ])
             ->add('abstract', TextType::class, ['label' => 'Résumé'])
             ->add('externalLink', TextType::class, ['label' => 'Lien externe'])
-            ->add('contentImage', FileType::class, array('label' => 'Image'))
+            ->add('contentImage', TextType::class, array('label' => 'Image'))
             ->add('content', TextareaType::class, ['label' => 'Contenu', 'attr' => ['class' => 'wysiwyg']])
-            ->add('contentImage', FileType::class, array('label' => 'Image'))
             ->add('save', SubmitType::class, ['label' => 'Enregistrer'])
         ;
     }

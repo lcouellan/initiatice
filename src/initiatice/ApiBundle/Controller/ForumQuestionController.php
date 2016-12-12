@@ -48,7 +48,7 @@ class ForumQuestionController extends Controller
          */
         if($isNotNull && $isNotEmpty) {
             $question = new ForumQuestion();
-            $question->setUserId( substr($request->request->get('userId'), 0, 255) );
+            $question->setUserId( substr($request->request->get('userId'), 0, 15) );
             $question->setContent( substr($request->request->get('content'), 0, 999999) );
             $question->setTitle( substr($request->request->get('title'), 0, 255) );
             $question->setDateAdd(new \DateTime());

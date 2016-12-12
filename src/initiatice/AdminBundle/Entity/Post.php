@@ -68,12 +68,10 @@ class Post
      */
     private $externalLink;
 
-	/**
-     * @Assert\Image(
-     *     mimeTypes = {"image/jpeg", "image/png","image/jpg", "image/gif"},
-     *     mimeTypesMessage = "Seuls les fichiers images sont autorisés"
-     * )
-     * @ORM\Column(name="content_image", type="string", nullable=true)
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="content_image", type="string", length=255, nullable=true)
      */
     private $contentImage;
 
@@ -91,8 +89,6 @@ class Post
      */
     private $dateUpdate;
     
-
-
 
     /**
      * Get id

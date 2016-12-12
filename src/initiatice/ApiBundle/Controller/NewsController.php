@@ -51,6 +51,7 @@ class NewsController extends Controller
     public function showAction($id)
     {
         $new = $this->getBd()->getRepository('initiaticeAdminBundle:News')->find($id);
+        if(!$new) return $this->getJsonResponse(['msg' => 'SOME FIELD IS NOT VALID'])->setStatusCode(400);
         return $this->getJsonResponse($this->serializer->normalize($new, null));
     }
 }

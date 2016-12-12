@@ -25,6 +25,7 @@ class EventType extends AbstractType
             ->add('place', TextType::class, ['label' => 'Lieu de l\'événement'])
             ->add('longitude', NumberType::class, ['label' => 'Longitude', 'required' => false ])
             ->add('latitude', NumberType::class, ['label' => 'Latitude', 'required' => false ])
+            ->add('contentImage', TextType::class, array('label' => 'Image'))
             ->add('dateStart', DateType::class, [
                 'widget' => 'single_text',
 				// add a class that can be selected in JavaScript

@@ -35,11 +35,11 @@ class ForumCommentController extends Controller
         /*
          * Validation
          */
-        $isNotNull = $request->request->get('pseudo')
+        $isNotNull = $request->request->get('userId')
             && $request->request->get('content')
             && $request->request->get('question');
 
-        $isNotEmpty = sizeof($request->request->get('pseudo')) > 0
+        $isNotEmpty = sizeof($request->request->get('userId')) > 0
             && sizeof($request->request->get('content')) > 0
             && sizeof($request->request->get('question')) > 0;
 
@@ -48,7 +48,7 @@ class ForumCommentController extends Controller
          */
         if($isNotNull && $isNotEmpty) {
             $comment = new ForumComment();
-            $comment->setUserId( substr($request->request->get('userId'), 0, 255) );
+            $comment->setUserId( substr($request->request->get('userId'), 0, 15) );
             $comment->setContent( substr($request->request->get('content'), 0, 999999) );
             $comment->setQuestionId( substr($request->request->get('question'), 0, 15) );
             $comment->setDateAdd(new \DateTime());

@@ -51,6 +51,7 @@ class UserController extends Controller
                 'token' => $request->request->get('token'),
                 'email' => $request->request->get('email')
             ], null, null, null)[0];
+            if(!$user) return $this->getJsonResponse(['msg' => 'SOME FIELD IS NOT VALID'])->setStatusCode(400);
             $user->setTokenGoogle($request->request->get('google'));
             $this->getBd()->persist($user);
             $this->getBd()->flush();
