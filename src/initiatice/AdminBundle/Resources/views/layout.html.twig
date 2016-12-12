@@ -5,7 +5,7 @@
     {% if is_granted("IS_AUTHENTICATED_FULLY") %}
         <nav>
             <div class="blue lighten-1 white-text nav-wrapper">
-                <a href="#" class="brand-logo center">Initiatice Dashboard</a>
+                <a href="{{ path('initiatice_admin_homepage') }}" class="brand-logo center">Initiatice Dashboard</a>
                 <ul id="nav-mobile" class="left hide-on-med-and-down">
                     <li><a href="{{ path("initiatice_admin_news_index") }}">Actualités</a></li>
                     <li><a href="{{ path("initiatice_admin_event_index") }}">Evènements</a></li>

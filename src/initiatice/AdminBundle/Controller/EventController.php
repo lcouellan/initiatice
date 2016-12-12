@@ -28,9 +28,7 @@ class EventController extends Controller
         
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
-        var_dump($form->isValid());
-        var_dump($form->getData());
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
 			
             $event = $form->getData();
