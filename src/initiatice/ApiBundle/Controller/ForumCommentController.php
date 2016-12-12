@@ -88,7 +88,9 @@ class ForumCommentController extends Controller
     public function showAction($id)
     {
         $comment = $this->getBd()->getRepository('initiaticeAdminBundle:ForumComment')->find($id);
+        if(!$comment) return $this->getJsonResponse(['msg' => 'COMMENT ID IS NOT VALID'])->setStatusCode(400);
         $user = $this->getBd()->getRepository('initiaticeAdminBundle:User')->find($comment->getUserId());
+        if(!$user) return $this->getJsonResponse(['msg' => 'USER ID IN COMMENT IS NOT VALID'])->setStatusCode(400);
         $c = $this->serializer->normalize($comment, null);
         $c['user'] = $user->getOtherInfos();
         return $this->getJsonResponse($c);

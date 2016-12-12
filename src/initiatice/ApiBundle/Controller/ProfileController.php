@@ -48,7 +48,7 @@ class ProfileController extends Controller
     public function showAction($id)
     {
         $profile = $this->getBd()->getRepository('initiaticeAdminBundle:Profile')->find($id);
-        if(!$profile) return $this->getJsonResponse(['msg' => 'SOME FIELD IS NOT VALID'])->setStatusCode(400);
+        if(!$profile) return $this->getJsonResponse(['msg' => 'PROFILE ID IS NOT VALID'])->setStatusCode(400);
         return $this->getJsonResponse($this->serializer->normalize($profile, null));
     }
 }

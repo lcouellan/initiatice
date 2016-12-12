@@ -87,10 +87,10 @@ class ForumQuestionController extends Controller
      */
     public function showAction($id)
     {
-        $question = $this->getDoctrine()
-            ->getRepository('initiaticeAdminBundle:ForumQuestion')
-            ->find($id);
+        $question = $this->getDoctrine()->getRepository('initiaticeAdminBundle:ForumQuestion')->find($id);
+        if(!$question) return $this->getJsonResponse(['msg' => 'QUESTION ID IS NOT VALID'])->setStatusCode(400);
         $user = $this->getBd()->getRepository('initiaticeAdminBundle:User')->find($question->getUserId());
+        if(!$user) return $this->getJsonResponse(['msg' => 'USER ID IN QUESTION IS NOT VALID'])->setStatusCode(400);
         $q = $this->serializer->normalize($question, null);
         $q['user'] = $user->getOtherInfos();
         return $this->getJsonResponse($q);

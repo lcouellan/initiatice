@@ -8,3 +8,23 @@ nav .dropdown-content {
 .sf-toolbar {
 	display:none;
 }
+
+.breadcrumb-navbar.nav-wrapper {
+    box-shadow: none;
+}
+
+.breadcrumb-navbar.nav-wrapper .breadcrumb::before {
+    color: #B1B1B1;
+    margin:0;
+}
+
+.breadcrumb-navbar.nav-wrapper .breadcrumb > * {
+    float: right;
+    padding: 0 10px;
+    color: #1976D2;
+    font-size: 16px;
+}
+
+.breadcrumb-navbar.nav-wrapper .breadcrumb > *.active {
+    color: #42A5F5;
+}
