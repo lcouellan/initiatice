@@ -118,7 +118,7 @@ class UserController extends Controller
         $isNotNull = $request->request->get('email')
             && $request->request->get('plainPassword');
         $isNotEmpty = sizeof($request->request->get('email')) > 0
-            && sizeof($request->request->get('plainPassword')) > 0;;
+            && sizeof($request->request->get('plainPassword')) > 0;
 
         /*
         * Auth

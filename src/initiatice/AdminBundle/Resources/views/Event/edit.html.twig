@@ -1,6 +1,13 @@
 {% extends "initiaticeAdminBundle::layout.html.twig" %}
 {% block initiaticeAdmin_body %}
-    <h3>Editer l'événement</h3>
+    <nav class="breadcrumb-navbar nav-wrapper transparent">
+        <ul>
+            <li class="breadcrumb"><a href="/event">Evènement</a></li>
+            <li class="breadcrumb"><span class="active">Modifier</span></li>
+        </ul>
+    </nav>
+
+    <h3>Modifier l'événement</h3>
     {{ form_start(form) }}
 
     <div class="row">
