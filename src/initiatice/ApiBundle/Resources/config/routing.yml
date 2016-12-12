@@ -58,6 +58,10 @@ initiatice_api_forum_question_add:
     defaults: { _controller: initiaticeApiBundle:ForumQuestion:add }
 
 
+
+initiatice_api_user_google_add:
+    path:     /api/user/google/add
+    defaults: { _controller: initiaticeApiBundle:User:googleAdd }
 initiatice_api_user_list:
     path:     /api/user/list
     defaults: { _controller: initiaticeApiBundle:User:list }
