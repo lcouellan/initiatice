@@ -12,6 +12,11 @@ use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
+/**
+ * News REST api
+ * Class NewsController
+ * @package initiatice\ApiBundle\Controller
+ */
 class NewsController extends Controller
 {
     private $serializer;
@@ -28,7 +33,10 @@ class NewsController extends Controller
     }
 
     /**
-     * Liste d'actualités
+     * List news
+     * Route: /api/news/list
+     * NOT REQUIRED (GET)Attributes: limit (number), profile (Profile->id)
+     * @param Request $request
      * @return JsonResponse
      */
     public function listAction(Request $request)
@@ -45,7 +53,9 @@ class NewsController extends Controller
     }
 
     /**
-     * Voir une actualité
+     * Show a news by ID
+     * Route: /api/news/show/{id}
+     * @param $id
      * @return JsonResponse
      */
     public function showAction($id)

@@ -6,8 +6,17 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use initiatice\AdminBundle\Entity\News;
 
+/**
+ * News fixtures
+ * Class LoadNewsData
+ * @package initiatice\AdminBundle\DataFixtures\ORM
+ */
 class LoadNewsData implements FixtureInterface
 {
+    /**
+     * Load fixtures
+     * @param ObjectManager $manager
+     */
     public function load(ObjectManager $manager)
     {
         $n = new News();

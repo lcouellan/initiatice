@@ -8,16 +8,30 @@ use initiatice\AdminBundle\Entity\News;
 use initiatice\AdminBundle\Form\NewsType;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * News
+ * Class NewsController
+ * @package initiatice\AdminBundle\Controller
+ */
 class NewsController extends Controller
 {
     private function getBd() { return $this->getDoctrine()->getManager(); }
 
+    /**
+     * List all news on the backoffice
+     * @return mixed
+     */
     public function indexAction()
     {
         $news = $this->getBd()->getRepository('initiaticeAdminBundle:News')->findAll();
         return $this->render('initiaticeAdminBundle:News:index.html.twig', ['news' => $news]);
     }
 
+    /**
+     * Add a news on the backoffice
+     * @param Request $request
+     * @return mixed
+     */
     public function addAction(Request $request)
     {
         $news = new News();
@@ -43,6 +57,12 @@ class NewsController extends Controller
         ]);
     }
 
+    /**
+     * Modify a news by ID on the backoffice
+     * @param $id
+     * @param Request $request
+     * @return mixed
+     */
     public function editAction($id, Request $request)
     {
         $news = $this->getBd()->getRepository('initiaticeAdminBundle:News')->find($id);
@@ -60,6 +80,11 @@ class NewsController extends Controller
         ]);
     }
 
+    /**
+     * Remove a news by ID on the backoffice
+     * @param $id
+     * @return mixed
+     */
     public function removeAction($id)
     {
         $news = $this->getBd()->getRepository('initiaticeAdminBundle:News')->find($id);

@@ -16,7 +16,11 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
-
+/**
+ * User type for form
+ * Class UserType
+ * @package initiatice\AdminBundle\Form
+ */
 class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)

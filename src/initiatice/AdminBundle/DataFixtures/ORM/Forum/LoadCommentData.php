@@ -12,9 +12,17 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use initiatice\AdminBundle\Entity\ForumComment;
 
-
+/**
+ * Forum comments fixtures
+ * Class LoadCommentData
+ * @package initiatice\AdminBundle\DataFixtures\ORM\Forum
+ */
 class LoadCommentData implements FixtureInterface
 {
+    /**
+     * Load fixtures
+     * @param ObjectManager $manager
+     */
     public function load(ObjectManager $manager)
     {
         $e = new ForumComment();

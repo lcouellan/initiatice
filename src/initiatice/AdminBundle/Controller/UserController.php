@@ -8,18 +8,31 @@ use initiatice\AdminBundle\Entity\User;
 use initiatice\AdminBundle\Form\UserType;
 use Symfony\Component\HttpFoundation\Request;
 
-
+/**
+ * Users
+ * Class UserController
+ * @package initiatice\AdminBundle\Controller
+ */
 class UserController extends Controller
 {
     private function getBd() { return $this->getDoctrine()->getManager(); }
     private function getEncoderFactory() { return $this->container->get('security.encoder_factory'); }
 
+    /**
+     * List all users on the backoffice
+     * @return mixed
+     */
     public function indexAction()
     {
         $users = $this->getBd()->getRepository('initiaticeAdminBundle:User')->findAll();
         return $this->render('initiaticeAdminBundle:User:index.html.twig', ['users' => $users]);
     }
 
+    /**
+     * Add an user on the backoffice
+     * @param Request $request
+     * @return mixed
+     */
     public function addAction(Request $request)
     {
         $user = new User();
@@ -38,6 +51,12 @@ class UserController extends Controller
         return $this->render('initiaticeAdminBundle:User:add.html.twig', ['form' => $form->createView()]);
     }
 
+    /**
+     * Modify an user by ID on the backoffice
+     * @param $id
+     * @param Request $request
+     * @return mixed
+     */
     public function editAction($id, Request $request)
     {
         $user = $this->getBd()->getRepository('initiaticeAdminBundle:User')->find($id);
@@ -55,6 +74,11 @@ class UserController extends Controller
         return $this->render('initiaticeAdminBundle:User:edit.html.twig', ['form' => $form->createView()]);
     }
 
+    /**
+     * Remove an user by ID on the backoffice
+     * @param $id
+     * @return mixed
+     */
     public function removeAction($id)
     {
         $user = $this->getBd()->getRepository('initiaticeAdminBundle:User')->find($id);

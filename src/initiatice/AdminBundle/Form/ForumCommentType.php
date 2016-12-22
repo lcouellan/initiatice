@@ -10,7 +10,11 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
-
+/**
+ * Forum comment type for form
+ * Class ForumCommentType
+ * @package initiatice\AdminBundle\Form
+ */
 class ForumCommentType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)

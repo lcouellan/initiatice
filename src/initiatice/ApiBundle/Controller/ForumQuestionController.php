@@ -12,6 +12,11 @@ use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
+/**
+ * Forum question REST api
+ * Class ForumQuestionController
+ * @package initiatice\ApiBundle\Controller
+ */
 class ForumQuestionController extends Controller
 {
     private $serializer;
@@ -27,8 +32,12 @@ class ForumQuestionController extends Controller
         return $response;
     }
 
-    /*
-     * Ajouter une question
+    /**
+     * Add a question
+     * Route: /api/forum/question/add
+     * REQUIRED (GET)Attributes: userId (User->id), content (string), title (string)
+     * @param Request $request
+     * @return mixed
      */
     public function addAction(Request $request)
     {
@@ -61,7 +70,10 @@ class ForumQuestionController extends Controller
     }
 
     /**
-     * Liste de questions
+     * List questions
+     * Route: /api/forum/question/list
+     * NOT REQUIRED (GET)Attributes: limit (number)
+     * @param Request $request
      * @return JsonResponse
      */
     public function listAction(Request $request)
@@ -82,7 +94,9 @@ class ForumQuestionController extends Controller
     }
 
     /**
-     * Voir une question
+     * Show a question by ID
+     * Route: /api/forum/question/show/{id}
+     * @param $id
      * @return JsonResponse
      */
     public function showAction($id)

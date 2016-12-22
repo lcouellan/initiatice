@@ -12,6 +12,11 @@ use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
+/**
+ * Profile REST api
+ * Class ProfileController
+ * @package initiatice\ApiBundle\Controller
+ */
 class ProfileController extends Controller
 {
     private $serializer;
@@ -28,7 +33,10 @@ class ProfileController extends Controller
     }
 
     /**
-     * Liste de profils
+     * List profiles
+     * Route: /api/profile/list
+     * NOT REQUIRED (GET)Attributes: limit (number)
+     * @param Request $request
      * @return JsonResponse
      */
     public function listAction(Request $request)
@@ -42,7 +50,9 @@ class ProfileController extends Controller
     }
 
     /**
-     * Voir un profil
+     * Show a profile by ID
+     * Route: /api/profile/show/{id}
+     * @param $id
      * @return JsonResponse
      */
     public function showAction($id)

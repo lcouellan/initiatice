@@ -13,6 +13,11 @@ use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
+/**
+ * User REST api
+ * Class UserController
+ * @package initiatice\ApiBundle\Controller
+ */
 class UserController extends Controller
 {
     private $serializer;
@@ -29,9 +34,12 @@ class UserController extends Controller
         return $response;
     }
 
-    /*
-     * Ajouter un token google à un utilisateur
-     * @return JsonResponse
+    /**
+     * Add a Google Token to an user
+     * Route: /api/user/google/add
+     * REQUIRED (GET)Attributes: email (User->email), token (User->token), google (User->tokenGoogle)
+     * @param Request $request
+     * @return mixed
      */
     public function googleAddAction(Request $request)
     {
@@ -44,7 +52,7 @@ class UserController extends Controller
             && sizeof($request->request->get('google')) > 0;
 
         /*
-         * Ajout token google
+         * Add Google token
          */
         if($isNotNull && $isNotEmpty) {
             $user = $this->getBd()->getRepository('initiaticeAdminBundle:User')->findBy([
@@ -60,19 +68,22 @@ class UserController extends Controller
         return $this->getJsonResponse(['msg' => 'SOME FIELD IS MISSING'])->setStatusCode(400);
     }
 
-    /*
-    * Modifier un utilisateur
-    * @return JsonResponse
-    */
+    /**
+     * Modify an user
+     * REQUIRED (GET)Attributes: email (User->email), token (User->token), key (User->firstname|lastname|description|profile), value (Mixed)
+     * Route: /api/user/edit
+     * @param Request $request
+     * @return mixed
+     */
     public function editAction(Request $request)
     {
         /*
          * Validation
          */
         $isNotNull = $request->request->get('token') && $request->request->get('email')
-                    && $request->request->get('key');
+                    && $request->request->get('key') && $request->request->get('value');
         $isNotEmpty = sizeof($request->request->get('token')) > 0 && sizeof($request->request->get('email')) > 0
-                    && sizeof($request->request->get('key')) > 0;
+                    && sizeof($request->request->get('key')) > 0 && sizeof($request->request->get('value')) > 0;
         $switch = [
             'firstname' => function($u, $req)   { $u->setFirstname( substr($req->request->get('value'), 0, 255) ); },
             'lastname' => function($u, $req)    { $u->setLastname( substr($req->request->get('value'), 0, 255) ); },
@@ -82,7 +93,7 @@ class UserController extends Controller
         if(!array_key_exists($request->request->get('key'), $switch))
             return $this->getJsonResponse(['msg' => 'KEY IS NOT VALID'])->setStatusCode(400);
 
-        // Modification en DB
+        // DB modify
         if($isNotNull && $isNotEmpty) {
             $user = $this->getBd()->getRepository('initiaticeAdminBundle:User')
                 ->findBy(['email' => $request->request->get('email'), 'token' => $request->request->get('token')], null, null, null)[0];
@@ -96,9 +107,12 @@ class UserController extends Controller
         return $this->getJsonResponse(['msg' => 'SOME FIELD IS MISSING'])->setStatusCode(400);
     }
 
-    /*
-     * Ajouter un utilisateur
-     * @return JsonResponse
+    /**
+     * Add an user
+     * REQUIRED (GET)Attributes: firstname (User->firstname), lastname (User->lastname), email (User->email), profile (Profile->id), plainPassword (User->plainPassword)
+     * Route: /api/user/add
+     * @param Request $request
+     * @return mixed
      */
     public function addAction(Request $request)
     {
@@ -114,7 +128,7 @@ class UserController extends Controller
             && sizeof($request->request->get('plainPassword')) > 0;
 
         /*
-         * Ajout
+         * Add
          */
         if($isNotNull && $isNotEmpty) {
 
@@ -142,9 +156,12 @@ class UserController extends Controller
         return $this->getJsonResponse(['msg' => 'SOME FIELD IS MISSING'])->setStatusCode(400);
     }
 
-    /*
-     * Récupérer token utilisateur pour connexion
-     * @return JsonResponse
+    /**
+     * Show an authenticated user (with auth token)
+     * REQUIRED (GET)Attributes: email (User->email), plainPassword (User->plainPassword)
+     * Route: /api/user/auth
+     * @param Request $request
+     * @return mixed
      */
     public function authAction(Request $request)
     {
@@ -172,7 +189,10 @@ class UserController extends Controller
     }
 
     /**
-     * Liste d'utilisateurs
+     * List users
+     * Route: /api/user/list
+     * NOT REQUIRED (GET)Attributes: limit (number)
+     * @param Request $request
      * @return JsonResponse
      */
     public function listAction(Request $request)
@@ -191,7 +211,9 @@ class UserController extends Controller
     }
 
     /**
-     * Voir un utilisateur
+     * Show an user by ID
+     * Route: /api/user/show/{id}
+     * @param $id
      * @return JsonResponse
      */
     public function showAction($id)

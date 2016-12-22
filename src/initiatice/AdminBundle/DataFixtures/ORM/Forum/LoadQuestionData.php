@@ -12,8 +12,17 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use initiatice\AdminBundle\Entity\ForumQuestion;
 
+/**
+ * Forum questions fixtures
+ * Class LoadQuestionData
+ * @package initiatice\AdminBundle\DataFixtures\ORM\Forum
+ */
 class LoadQuestionData implements FixtureInterface
 {
+    /**
+     * Load fixtures
+     * @param ObjectManager $manager
+     */
     public function load(ObjectManager $manager)
     {
         $q = new ForumQuestion();

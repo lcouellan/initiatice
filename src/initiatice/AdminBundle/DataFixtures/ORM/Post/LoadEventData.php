@@ -6,8 +6,17 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use initiatice\AdminBundle\Entity\Event;
 
+/**
+ * Events fixtures
+ * Class LoadEventData
+ * @package initiatice\AdminBundle\DataFixtures\ORM
+ */
 class LoadEventData implements FixtureInterface
 {
+    /**
+     * Load fixtures
+     * @param ObjectManager $manager
+     */
     public function load(ObjectManager $manager)
     {
         $e = new Event();

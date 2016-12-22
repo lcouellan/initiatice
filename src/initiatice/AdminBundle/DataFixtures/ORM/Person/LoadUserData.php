@@ -8,6 +8,11 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use initiatice\AdminBundle\Entity\User;
 
+/**
+ * User (smartphone user) fixtures
+ * Class LoadUserData
+ * @package initiatice\AdminBundle\DataFixtures\ORM
+ */
 class LoadUserData implements FixtureInterface, ContainerAwareInterface
 {
     /**
@@ -20,6 +25,10 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $this->container = $container;
     }
 
+    /**
+     * Load fixtures
+     * @param ObjectManager $manager
+     */
     public function load(ObjectManager $manager)
     {
         $encoderFactory = $this->container->get('security.encoder_factory');

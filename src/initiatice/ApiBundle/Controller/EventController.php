@@ -12,6 +12,11 @@ use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
+/**
+ * Event REST api
+ * Class EventController
+ * @package initiatice\ApiBundle\Controller
+ */
 class EventController extends Controller
 {
     private $serializer;
@@ -28,7 +33,10 @@ class EventController extends Controller
     }
 
     /**
-     * Liste d'evenements
+     * List events
+     * Route: /api/event/list
+     * NOT REQUIRED (GET)Attributes: limit (number), profile (Profile->id)
+     * @param Request $request
      * @return JsonResponse
      */
     public function listAction(Request $request)
@@ -45,7 +53,9 @@ class EventController extends Controller
     }
 
     /**
-     * Voir un evenement
+     * Show an event by ID
+     * Route: /api/event/show/{Event->id}
+     * @param $id
      * @return JsonResponse
      */
     public function showAction($id)

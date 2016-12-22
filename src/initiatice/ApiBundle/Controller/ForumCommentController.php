@@ -12,6 +12,11 @@ use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
+/**
+ * Forum comment REST api
+ * Class ForumCommentController
+ * @package initiatice\ApiBundle\Controller
+ */
 class ForumCommentController extends Controller
 {
     private $serializer;
@@ -27,8 +32,12 @@ class ForumCommentController extends Controller
         return $response;
     }
 
-    /*
-     * Ajouter un commentaire
+    /**
+     * Add a comment
+     * Route: /api/forum/comment/add
+     * REQUIRED (GET)Attributes: userId (User->id), content (string), question (Question->id)
+     * @param Request $request
+     * @return mixed
      */
     public function addAction(Request $request)
     {
@@ -44,7 +53,7 @@ class ForumCommentController extends Controller
             && sizeof($request->request->get('question')) > 0;
 
         /*
-         * Ajout
+         * Add
          */
         if($isNotNull && $isNotEmpty) {
             $comment = new ForumComment();
@@ -61,7 +70,10 @@ class ForumCommentController extends Controller
     }
 
     /**
-     * Liste de commentaires
+     * List comments
+     * Route: /api/forum/comment/list
+     * NOT REQUIRED (GET)Attributes: limit (number), question (Question->id)
+     * @param Request $request
      * @return JsonResponse
      */
     public function listAction(Request $request)
@@ -82,7 +94,9 @@ class ForumCommentController extends Controller
     }
 
     /**
-     * Voir un commentaire
+     * Show a comment by ID
+     * Route: /api/forum/comment/show/{id}
+     * @param $id
      * @return JsonResponse
      */
     public function showAction($id)

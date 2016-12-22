@@ -12,7 +12,11 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 
-
+/**
+ * News type for form
+ * Class NewsType
+ * @package initiatice\AdminBundle\Form
+ */
 class NewsType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)

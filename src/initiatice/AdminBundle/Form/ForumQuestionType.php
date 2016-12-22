@@ -11,7 +11,11 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
-
+/**
+ * Forum question type for form
+ * Class ForumQuestionType
+ * @package initiatice\AdminBundle\Form
+ */
 class ForumQuestionType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
