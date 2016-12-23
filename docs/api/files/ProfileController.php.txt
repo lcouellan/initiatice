@@ -63,3 +63,4 @@ class ProfileController extends Controller
         return $this->getJsonResponse($this->serializer->normalize($profile, null));
     }
 }
+

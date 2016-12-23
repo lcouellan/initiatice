@@ -14,6 +14,7 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 /**
  * News REST api
+ *
  * Class NewsController
  * @package initiatice\ApiBundle\Controller
  */
@@ -33,9 +34,10 @@ class NewsController extends Controller
     }
 
     /**
-     * List news
-     * Route: /api/news/list
-     * NOT REQUIRED (GET)Attributes: limit (number), profile (Profile->id)
+     * List news from /api/news/list
+     *
+     * [GET] <b>limit <i>(number)</i></b> to limit the results <i>Not required</i>
+     * [GET] <b>profile <i>(number)</i></b> to find by a profile <i>Not required</i>
      * @param Request $request
      * @return JsonResponse
      */
@@ -53,8 +55,8 @@ class NewsController extends Controller
     }
 
     /**
-     * Show a news by ID
-     * Route: /api/news/show/{id}
+     * Show a news by ID from /api/news/show/{id}
+     *
      * @param $id
      * @return JsonResponse
      */

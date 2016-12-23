@@ -111,3 +111,4 @@ class ForumCommentController extends Controller
         return $this->getJsonResponse($c);
     }
 }
+

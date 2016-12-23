@@ -14,6 +14,7 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 /**
  * Event REST api
+ *
  * Class EventController
  * @package initiatice\ApiBundle\Controller
  */
@@ -33,9 +34,10 @@ class EventController extends Controller
     }
 
     /**
-     * List events
-     * Route: /api/event/list
-     * NOT REQUIRED (GET)Attributes: limit (number), profile (Profile->id)
+     * List events from /api/event/list
+     *
+     * [GET] <b>limit <i>(number)</i></b> to limit the results <i>Not required</i> <br/>
+     * [GET] <b>profile <i>(number)</i></b> to find by a profile <i>Not required</i>
      * @param Request $request
      * @return JsonResponse
      */
@@ -53,8 +55,8 @@ class EventController extends Controller
     }
 
     /**
-     * Show an event by ID
-     * Route: /api/event/show/{Event->id}
+     * Show an event by ID from /api/event/show/{id}
+     *
      * @param $id
      * @return JsonResponse
      */

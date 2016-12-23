@@ -3,7 +3,7 @@
 namespace initiatice\ApiBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use initiatice\AdminBundle\Entity\Profile;
+use initiatice\AdminBundle\Entity\News;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -13,12 +13,12 @@ use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 /**
- * Profile REST api
+ * News REST api
  *
- * Class ProfileController
+ * Class NewsController
  * @package initiatice\ApiBundle\Controller
  */
-class ProfileController extends Controller
+class NewsController extends Controller
 {
     private $serializer;
     public function __construct() {
@@ -34,32 +34,37 @@ class ProfileController extends Controller
     }
 
     /**
-     * List profiles from /api/profile/list
+     * List news from /api/news/list
      *
      * [GET] <b>limit <i>(number)</i></b> to limit the results <i>Not required</i>
+     * [GET] <b>profile <i>(number)</i></b> to find by a profile <i>Not required</i>
      * @param Request $request
      * @return JsonResponse
      */
     public function listAction(Request $request)
     {
         $limit = $request->query->get('limit') == null ? null : $request->query->get('limit');
-        $profiles = $this->getBd()->getRepository('initiaticeAdminBundle:Profile')->findBy([], null, $limit, null);
+        $findBy = [];
+        if($request->query->get('profile') != null)
+            $findBy['profile'] = $request->query->get('profile');
+        $news = $this->getBd()->getRepository('initiaticeAdminBundle:News')->findBy($findBy, null, $limit, null);
         $data = [];
-        foreach($profiles as $profile)
-            $data[] = $this->serializer->normalize($profile, null);
+        foreach($news as $new)
+            $data[] = $this->serializer->normalize($new, null);
         return $this->getJsonResponse($data);
     }
 
     /**
-     * Show a profile by ID from /api/profile/show/{id}
+     * Show a news by ID from /api/news/show/{id}
      *
      * @param $id
      * @return JsonResponse
      */
     public function showAction($id)
     {
-        $profile = $this->getBd()->getRepository('initiaticeAdminBundle:Profile')->find($id);
-        if(!$profile) return $this->getJsonResponse(['msg' => 'PROFILE ID IS NOT VALID'])->setStatusCode(400);
-        return $this->getJsonResponse($this->serializer->normalize($profile, null));
+        $new = $this->getBd()->getRepository('initiaticeAdminBundle:News')->find($id);
+        if(!$new) return $this->getJsonResponse(['msg' => 'NEWS ID IS NOT VALID'])->setStatusCode(400);
+        return $this->getJsonResponse($this->serializer->normalize($new, null));
     }
 }
+
