@@ -6,17 +6,17 @@ A Symfony project created on December 2, 2016, 2:32 pm.
 # Install
 Generate vendors and add database config
 ```
-    php composer.phar install
+php composer.phar install
 ```
 
 Create tables
 ```
-    php bin/console doctrine:schema:update
+php bin/console doctrine:schema:update
 ```
 
 Generate fixtures
 ```
-    php bin/console doctrine:fixtures:load
+php bin/console doctrine:fixtures:load
 ```
 
 # Documentation
